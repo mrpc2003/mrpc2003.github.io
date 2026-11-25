@@ -83,35 +83,20 @@
     </article>
 
     <article class="work">
-
-      
-        <h3>RGB·관절 상태 기반 로봇 소포 분류</h3>
-        <p class="work-meta">WarehouseSort<span class="sep">|</span>Machine Intelligence Lab<span class="sep">|</span>2026.09</p>
-        <p class="kpi"><span class="kpi-v">90.75<small>%</small></span><span class="kpi-l">시드 고정 600에피소드<span class="sep">|</span>외란 조건 73.36%</span></p>
-        <p>깊이 센서와 시뮬레이터 특권 상태 없이 RGB 영상과 관절 상태만 사용하는 Diffusion Policy 학습·평가 파이프라인을 구축했습니다. 결과 확인 전 시드를 고정한 600에피소드 평가에서 일반 조건 90.75%, 외란 조건 73.36%의 가중 소포 정렬 정확도를 확인했습니다.</p>
-        <p class="work-links"><a href="https://github.com/mrpc2003/berlin-marso-hackathon">Code</a></p>
+        <h3>SO-ARM 101 기반 VLA 체스 로봇</h3>
+        <p class="work-meta">AIM ChessRobot<span class="sep">|</span>AIM 동아리 3인 팀<span class="sep">|</span>2026</p>
+        <p>3인 팀으로 SO-ARM 101 로봇팔과 Jetson Orin Nano를 연결하고 텔레오퍼레이션으로 시연 데이터를 수집했습니다. 원격 Policy Server의 SmolVLA(450M)가 계산한 action chunk를 Jetson이 비동기로 받아 안전 게이트를 거쳐 실행하는 구조를 만들었고, 실물에서 SmolVLA 정책으로 체스말 1개를 집는 데 성공했습니다.</p>
         <details>
           <summary>Details</summary>
           <dl class="spec">
             <dt>확인하려던 문제</dt>
-            <dd>시각 입력을 RGB 카메라 한 대로 제한해도 Diffusion Policy가 소포 분류 작업을 학습할 수 있는지, 배치 무작위화 범위를 넓힌 외란 조건에서 성능이 얼마나 떨어지는지 확인했습니다.</dd>
-            <dt>본인 역할</dt>
-            <dd>Marso Hack Berlin 2026 종료 후 공개 스타터를 포크해 단독으로 진행했습니다. 정책 학습과 평가, 재현 자료 정리를 맡았습니다.</dd>
-            <dt>비교 조건</dt>
-            <dd>입력은 128×128 RGB 장면 카메라와 26차원 관절 상태입니다. 평가 시드(일반 6000–6099, 외란 8000–8099)는 체크포인트 선택 시드와 겹치지 않게 결과 확인 전에 고정했습니다. 난이도 가중치는 0.2 / 0.3 / 0.5입니다.</dd>
-            <dt>결과</dt>
-            <dd>
-              <div class="tbl"><table>
-                <thead><tr><th>정렬 정확도</th><th>Easy</th><th>Medium</th><th>Hard</th><th>가중</th></tr></thead>
-                <tbody>
-                  <tr><th>일반</th><td>99.0%</td><td>89.0%</td><td>88.5%</td><td>90.75%</td></tr>
-                  <tr><th>외란</th><td>97.5%</td><td>71.75%</td><td>64.67%</td><td>73.36%</td></tr>
-                </tbody>
-              </table></div>
-              <p class="note">각 칸 100에피소드. 에피소드 단위 전량 배치율(일반 0.98 / 0.86 / 0.76, 외란 0.95 / 0.67 / 0.41)은 따로 집계했습니다.</p>
-            </dd>
+            <dd>엣지 디바이스(Jetson)와 원격 정책 서버로 나눈 구성에서 VLA 정책이 실물 체스말을 집고 옮길 수 있는지 확인하는 것이 목표입니다. 어떤 수를 둘지는 python-chess·Stockfish가 맡고, VLA는 집기·옮기기 조작만 담당하도록 역할을 나눴습니다.</dd>
+            <dt>구성</dt>
+            <dd>SO-ARM 101 + Jetson Orin Nano 8GB, 손목 카메라 마운트 직접 설계. Jetson은 관측 수집·action queue·안전 게이트(clamp, timeout, stale action 무시, E-stop)를 맡고, Policy Server는 LeRobot·SmolVLA로 action chunk를 계산합니다. top-view 호모그래피로 8×8 보드 점유를 인식하고 python-chess로 합법수를 검증합니다.</dd>
+            <dt>진행 범위</dt>
+            <dd>캘리브레이션, 텔레오퍼레이션 시연 데이터 수집, 정책 서버–Jetson 실행 구조 구성 후 실물에서 SmolVLA 정책으로 체스말 1개 집기에 성공했습니다.</dd>
             <dt>한계</dt>
-            <dd>로컬 프록시 평가이며 대회 공식 held-out 점수와 직접 비교할 수 없습니다. 일반 조건의 Easy는 배치가 고정돼 있어 일반화보다 반복 안정성을 보여 줍니다.</dd>
+            <dd>체스 한 수 전체(집기–이동–놓기)의 자동 실행과 반복 성공률 측정은 아직 진행 전입니다. 코드는 비공개 팀 자료라 링크를 싣지 않습니다.</dd>
           </dl>
         </details>
     </article>
@@ -128,11 +113,11 @@
           <summary>Details</summary>
           <dl class="spec">
             <dt>IROS 2026 · 팀 OriMo</dt>
-            <dd>2026.06 – 2026.10. Sharpa 양팔 로봇으로 종이를 접는 국제 챌린지입니다. 팀은 행동 추론 반복 횟수를 10회에서 6회로 줄이는 정책 증류를 진행했습니다. 저는 서버별 학습 기록·체크포인트와 실제 제출본의 대응 관계를 정리하고, 원격 실기 로그를 영상과 대조해 실패 발생 단계를 분류했습니다. 추론 명령이 제시간에 생성되고도 접촉 직전 접근 구간에서 멈추는 사례를 확인했습니다.</dd>
+            <dd>2026.06 – 2026.10. Sharpa 양팔 로봇으로 종이를 접는 국제 챌린지입니다. 팀은 정책 증류로 양팔 로봇의 행동 명령을 생성할 때 필요한 추론 반복을 10회에서 6회로 줄였습니다. 저는 서버별 학습 기록·체크포인트와 실제 제출본의 대응 관계를 정리하고, 원격 실기 로그를 영상과 대조해 실패 발생 단계를 분류했습니다. 추론 명령이 제시간에 생성되고도 접촉 직전 접근 구간에서 멈추는 사례를 확인했습니다.</dd>
             <dt>IRC 2026 · 팀 국민대학교 로봇국</dt>
-            <dd>2026.11. 마트 환경 기반 휴머노이드 로봇 경진대회(산업통상부·대구광역시 주최, 한국로봇산업진흥원 주관)입니다. 예선은 Isaac Sim 시뮬레이션으로, 본선은 AI Worker 실물 로봇과 π0.5 VLA로 치렀고 팀은 동상을 받았습니다. 저는 본선 현장 런타임 릴리스를 보존하고, 시도별로 파지·주행이 멈춘 단계를 대조했습니다.</dd>
+            <dd>2026.11. 마트 환경 기반 휴머노이드 로봇 경진대회(산업통상부·대구광역시 주최, 한국로봇산업진흥원 주관)입니다. 팀은 Isaac Sim으로 예선을 치렀습니다. 본선에서는 AI Worker 실물 로봇의 바구니 집기에 π0.5 VLA를 사용했고, 대회에서 동상을 받았습니다. 저는 본선 현장 런타임 릴리스를 보존하고, 시도별로 파지·주행이 멈춘 단계를 대조했습니다.</dd>
             <dt>한계</dt>
-            <dd>로그와 영상을 대조해 실패가 발생한 구간을 분류한 결과이며, 특정 모델 구성이 실패 원인임을 입증한 개입 실험은 아닙니다. 추론 반복 횟수 감소는 로봇 작업 단계 수의 감소를 뜻하지 않습니다. 대회 비공개 자료는 싣지 않습니다.</dd>
+            <dd>로그와 영상을 대조해 실패가 발생한 구간을 분류한 결과이며, 특정 모델 구성이 실패 원인임을 입증한 개입 실험은 아닙니다. 대회 비공개 자료는 싣지 않습니다.</dd>
           </dl>
         </details>
     </article>
@@ -142,8 +127,8 @@
     <h2 id="h-exp">Experience</h2>
     <div class="entry">
       <h3>학부연구생 · <a href="http://mi.kookmin.ac.kr/">Machine Intelligence Lab</a></h3>
-      <p class="work-meta">국민대학교 인공지능학부<span class="sep">|</span>지도교수 이재구<span class="sep">|</span><span class="nowrap">2025.09 – 현재</span></p>
-      <p>멀티모달(VLM) 추론 개입 재현과 로봇 조작 정책 학습·실기 평가를 연구하며, 멀티 GPU Linux 서버를 구축·운용합니다.</p>
+      <p class="work-meta">국민대학교 인공지능학부<span class="sep">|</span>지도교수 이재구<span class="sep">|</span><span class="nowrap">2025.12 – 현재</span></p>
+      <p>멀티모달(VLM) 추론 개입 재현과 로봇 조작 정책 학습·실기 평가를 연구하며, 멀티 GPU Linux 서버를 구축·운용합니다. Stanford CS231n·CS224R 강의를 함께 공부했습니다.</p>
     </div>
     <div class="entry">
       <h3>학부 수업 실습 지원 헬퍼 (근로장학생)</h3>
