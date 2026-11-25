@@ -216,6 +216,11 @@ p { margin: 0; }
   border-bottom: 1px solid #d4d4d4;
 }
 .work-links a:hover { color: var(--ink); border-color: var(--ink); }
+.work-links a { white-space: nowrap; }
+@media (max-width: 600px) {
+  .work-links { display: flex; flex-wrap: wrap; gap: 6px 16px; }
+  .work-links .dot { display: none; }
+}
 
 /* Details */
 details { margin-top: 18px; }
