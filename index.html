@@ -3,602 +3,166 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>김우현 · Woohyun Kim | Robot Learning &amp; Model Compression</title>
-<meta name="description" content="국민대학교 인공지능학부 · Machine Intelligence Lab 학부연구생 김우현. 로봇 시각·언어·행동(VLA) 정책 실기 평가, 신경망 가지치기·저비트 양자화, VLM 내부 분석.">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<title>김우현 · Woohyun Kim</title>
+<meta name="description" content="국민대학교 인공지능학부 3학년, Machine Intelligence Lab 학부연구생 김우현. 다중 이미지 VLM 추론 개입 재현과 로봇 조작 정책(Diffusion Policy·VLA)의 실기 평가를 연구합니다.">
+<meta name="color-scheme" content="light">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&amp;family=Noto+Sans+KR:wght@300;400;500&amp;display=swap">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header class="topbar">
-  <div class="topbar-inner">
-    <div class="topbar-head">
-      <a href="#top" class="brand">김우현 <span>Woohyun Kim</span></a>
-      <a href="cv.pdf" target="_blank" rel="noopener" class="nav-cv nav-cv-mobile">CV (PDF) ↗</a>
+<aside class="side">
+  <div class="side-inner">
+    <div class="profile">
+      <h1 class="name">김우현</h1>
+      <p class="en">WOOHYUN KIM</p>
+      <p class="tag">VLA · EFFICIENT AI</p>
     </div>
-    <nav class="topnav" aria-label="섹션 탐색">
-      <a href="#about">소개</a>
-      <a href="#work">대표 연구</a>
-      <a href="#projects">프로젝트</a>
-      <a href="#awards">대회·수상</a>
-      <a href="#edu">학력·수업</a>
-      <a href="#teach">교육·이전활동</a>
-      <a href="cv.pdf" target="_blank" rel="noopener" class="nav-cv nav-cv-desktop">CV (PDF) ↗</a>
+    <p class="affil">국민대학교 인공지능학부 3학년<br><a href="http://mi.kookmin.ac.kr/">Machine Intelligence Lab</a> 학부연구생</p>
+
+    <nav class="nav" aria-label="주요 메뉴">
+      <a href="#research"><span class="no">01</span>Research</a>
+      <a href="#experience"><span class="no">02</span>Experience</a>
+      <a href="#cv"><span class="no">03</span>CV</a>
     </nav>
+
+    <div class="contact">
+      <h2 class="side-h">Contact</h2>
+      <div class="kv"><span class="k">EMAIL</span><a class="v" href="mailto:mrpc2003@gmail.com">mrpc2003@gmail.com</a></div>
+      <div class="kv"><span class="k">GITHUB</span><a class="v" href="https://github.com/mrpc2003">github.com/mrpc2003</a></div>
+      <div class="kv"><span class="k">CV</span><a class="v" href="cv.pdf">cv.pdf</a></div>
+    </div>
   </div>
-</header>
+</aside>
 
-<main id="top" class="wrap">
+<main class="main">
 
-  <!-- HERO -->
-  <section class="hero">
-    <p class="eyebrow">Robot Learning · VLA Model Compression · Systems Analysis</p>
-    <h1>김우현 <span>Woohyun Kim</span></h1>
-    <p class="affil">
-      국민대학교 소프트웨어융합대학 인공지능학부 인공지능전공 3학년
-      <span class="dot">·</span>
-      <a href="http://mi.kookmin.ac.kr/" target="_blank" rel="noopener">Machine Intelligence Lab ↗</a> 학부연구생
-    </p>
-
-    <div class="rq-box">
-      <p class="rq-label">Research Question</p>
-      <p class="rq-text">로봇의 시각·언어·행동(VLA) 모델을 줄였을 때 <strong>어느 동작 단계(접근·접촉·조작)부터 실패하는지</strong> 규명하고, 작업 성공률을 유지하면서 <strong>관측에서 행동까지의 지연과 메모리 비용</strong>을 얼마나 줄일 수 있는지에 집중하고 있습니다.</p>
-    </div>
-
-    <nav class="hero-links" aria-label="외부 프로필 및 이력서">
-      <a href="cv.pdf" target="_blank" rel="noopener" class="btn-primary">CV (PDF) 열기 ↗</a>
-      <a href="https://github.com/mrpc2003" target="_blank" rel="noopener">GitHub ↗</a>
-      <a href="mailto:mrpc2003@gmail.com">mrpc2003@gmail.com</a>
-      <a href="https://www.linkedin.com/in/woohyun-kim-118433126/" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a href="https://dacon.io/myprofile/468534/competition" target="_blank" rel="noopener">DACON ↗</a>
-    </nav>
-
-    <div class="kpi-strip">
-      <div class="kpi">
-        <span class="kpi-kicker">실물 VLA 경진대회</span>
-        <strong class="kpi-val">예선 1위 · 본선 4위</strong>
-        <span class="kpi-sub">마트 휴머노이드 π0.5 · IROS 2026 OriMo</span>
-      </div>
-      <div class="kpi">
-        <span class="kpi-kicker">가지치기 · 4비트 양자화</span>
-        <strong class="kpi-val">지연 −49% · +9.88%p</strong>
-        <span class="kpi-sub">ResNet-18 채널 축소 · W4A4 QAT</span>
-      </div>
-      <div class="kpi">
-        <span class="kpi-kicker">거대 VLM 내부 개입 재현</span>
-        <strong class="kpi-val">+4.19%p <em>(2× PRO 6000)</em></strong>
-        <span class="kpi-sub">ICLR 2026 Qwen2.5-VL-3B 재현</span>
-      </div>
-      <div class="kpi">
-        <span class="kpi-kicker">모방학습 조작 정책</span>
-        <strong class="kpi-val">90.75% 분류 정확도</strong>
-        <span class="kpi-sub">6.11M RGB Diffusion Policy · 600회 평가</span>
-      </div>
-    </div>
+  <section id="about" class="block" aria-labelledby="h-about">
+    <h2 id="h-about">About</h2>
+    <p class="bio">제한된 메모리와 연산 자원 안에서 시각·언어·행동(VLA) 및 멀티모달 모델의 동작 안정성과 추론 효율을 함께 평가하는 연구에 관심이 있습니다. 다중 이미지 VLM 추론 개입 재현과 로봇 조작 정책(Diffusion Policy·VLA)의 실기 평가를 중심으로 연구하고 있습니다.</p>
   </section>
 
-  <!-- 01 소개 -->
-  <section id="about" class="sec">
-    <div class="sec-head">
-      <span class="num">01</span>
-      <h2>소개</h2>
-    </div>
-    <p class="lead">오프라인 예측 오차나 분류 정확도가 비슷하더라도, 실제 하드웨어와 로봇 위에서는 <strong>실행 시간과 작업 완수 여부가 크게 갈리는 현상</strong>을 측정으로 확인해 왔습니다.</p>
-    <p>양팔 로봇 종이접기 국제 챌린지(IROS 2026)와 마트 환경 휴머노이드 경진대회에서 팀의 VLA 정책이 실물 로봇 위에서 멈춘 지점을 로그와 영상으로 시도 단위로 추적했습니다. 연구실과 수업에서는 <code>Qwen2.5-VL-3B</code> 구분자 토큰 은닉 상태 스케일링(2× RTX PRO 6000), 구조적 가지치기·4비트 양자화(PTQ/QAT), <code>ViT·Swin·ResNet</code> 보정·재현성 감사, <code>GPT-2 124M</code> 분산 학습(DDP), <code>im2col</code> 타일링과 Systolic Array 시뮬레이터를 직접 구현하고 검증했습니다.</p>
-    <p class="muted-note">초등 정보과학영재학급의 Scratch에서 시작해 고교 FTC 로봇팀 '메인보드'(Rising Star Award), 공군 항공교통 복무(2023.05–2025.02)를 거쳐 현재 국민대학교 Machine Intelligence Lab 학부연구생으로 활동하고 있습니다.</p>
-  </section>
+  <section id="research" class="block" aria-labelledby="h-research">
+    <h2 id="h-research">Research</h2>
 
-  <!-- 02 대표 연구 · 실기 분석 -->
-  <section id="work" class="sec">
-    <div class="sec-head">
-      <span class="num">02</span>
-      <h2>대표 연구 · 실기 분석</h2>
-      <span class="sec-desc">모델 압축 · 실물 VLA 평가 · VLM 내부 개입</span>
-    </div>
+    <article class="work">
 
-    <!-- Card 1: Compression -->
-    <article class="card">
-      <div class="card-top">
-        <span class="badge badge-comp">Model Compression</span>
-        <span class="kicker">엣지컴퓨팅 · 2026년 2학기 · 개인 실험</span>
-      </div>
-      <h3>정확도가 비슷한 두 모델의 실행 시간이 두 배 차이 나는 이유: 가지치기와 4비트 양자화</h3>
-      <p>CIFAR-100에서 <code>ResNet-18</code>의 비구조적·구조적 가지치기와 <code>MobileNetV2</code> 저비트 양자화(PTQ·QAT)가 정확도, CPU 단일 스레드 지연, GPU(RTX PRO 6000) FP16 배치 처리량에 미치는 영향을 측정했습니다.</p>
-
-      <div class="viz-panel">
-        <div class="viz-col">
-          <p class="viz-title">ResNet-18 · CPU 1-Thread 추론 지연 (batch 1, FP32)</p>
-          <div class="bar-row">
-            <div class="bar-label"><span>원본 FP32</span><span class="mono">75.85% · 10.72 ms</span></div>
-            <div class="bar-track"><div class="bar-fill bar-neutral" style="width:99.7%"></div></div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-label"><span>비구조적 가지치기 90%</span><span class="mono">74.13% · 10.75 ms</span></div>
-            <div class="bar-track"><div class="bar-fill bar-warn" style="width:100%"></div></div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-label"><strong>구조적(채널) 가지치기 51.3%</strong><strong class="mono accent-txt">74.36% · 5.46 ms (−49%)</strong></div>
-            <div class="bar-track"><div class="bar-fill bar-accent" style="width:50.8%"></div></div>
-          </div>
-        </div>
-        <div class="viz-col">
-          <p class="viz-title">MobileNetV2 · W4A4 채널별 양자화 정확도 회복</p>
-          <div class="bar-row">
-            <div class="bar-label"><span>W4A4 PTQ</span><span class="mono">61.54%</span></div>
-            <div class="bar-track"><div class="bar-fill bar-neutral" style="width:81.1%"></div></div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-label"><span>FP32 15ep + PTQ (대조군)</span><span class="mono">61.31%</span></div>
-            <div class="bar-track"><div class="bar-fill bar-neutral" style="width:80.8%"></div></div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-label"><strong>W4A4 15ep QAT (3-seed)</strong><strong class="mono good-txt">71.42% (+9.88%p)</strong></div>
-            <div class="bar-track"><div class="bar-fill bar-good" style="width:94.2%"></div></div>
-          </div>
-        </div>
-      </div>
-
-      <ul class="did">
-        <li>가중치를 90% 지워도 밀집(dense) 텐서 연산 그대로면 지연이 줄지 않으며, 물리적 채널 차원을 줄여야만 실제 지연이 절반(10.72 → <strong>5.46 ms</strong>)으로 단축됨을 확인했습니다.</li>
-        <li>추가 학습 에폭 효과와 양자화 인지 학습 효과를 분리하기 위해 동일 15 epoch FP32 추가학습 후 PTQ 대조군(61.31%)을 두어 QAT의 순수 회복 폭(<strong>+9.88%p</strong>)을 검증했습니다.</li>
-      </ul>
-      <div class="card-foot">
-        <p class="tags"><span>Structured Pruning</span><span>W4A4 PTQ / QAT</span><span>Latency Profiling</span><span>RTX PRO 6000</span></p>
-      </div>
+      
+        <h3>다중 이미지 VLM의 구분자 스케일링 재현</h3>
+        <p class="work-meta">ICLR 2026 논문 독립 재현<span class="sep">|</span>Machine Intelligence Lab<span class="sep">|</span>2026.07</p>
+        <p class="kpi"><span class="kpi-v">+4.19<small>%p</small></span><span class="kpi-l">MuirBench 2,600문항<span class="sep">|</span>37.00% → 41.19%</span></p>
+        <p>Qwen2.5-VL-3B의 구분자 은닉 상태 스케일링을 원저자 공개 코드를 기반으로 독립 재현하고, 고해상도 비전 어텐션의 메모리 문제에 대응하는 블록 단위 SDPA 평가 경로를 구현했습니다. MuirBench 공개 벤치마크 전체에서 기본 설정 대비 개입 설정의 정확도가 오르는 경향을 부분 재현했습니다.</p>
+        <p class="work-links"><a href="https://github.com/mrpc2003/DelimScaling">Code &amp; Report</a><span class="dot">·</span><a href="https://proceedings.iclr.cc/paper_files/paper/2026/hash/aebf6284fe85a8f44b4785d41bc8249a-Abstract-Conference.html">Paper</a></p>
+        <details>
+          <summary>Details</summary>
+          <dl class="spec">
+            <dt>확인하려던 문제</dt>
+            <dd>이미지 사이 구분자 토큰의 은닉 상태를 키우는 개입이 다중 이미지 이해 정확도를 높인다는 논문 결과가 다른 실행 환경에서도 나타나는지 확인했습니다.</dd>
+            <dt>본인 역할</dt>
+            <dd>원저자 공개 구현(<a href="https://github.com/MYMY-young/DelimScaling">MYMY-young/DelimScaling</a>)으로 실행 환경을 구성하고, 저장소의 4-process FlashAttention-2 경로 대신 블록 단위 비전 SDPA 평가 경로를 구현했습니다.</dd>
+            <dt>비교 조건</dt>
+            <dd>Qwen2.5-VL-3B, 개입 레이어 0–3, 스케일 λ=8, MuirBench 전체 2,600문항, 2× RTX PRO 6000 Blackwell.</dd>
+            <dt>결과</dt>
+            <dd>
+              <div class="tbl"><table>
+                <thead><tr><th></th><th>기본</th><th>개입</th><th>차이</th></tr></thead>
+                <tbody>
+                  <tr><th>논문 보고</th><td>37.31%</td><td>42.42%</td><td>+5.11%p</td></tr>
+                  <tr><th>로컬 재현</th><td>37.00%</td><td>41.19%</td><td>+4.19%p</td></tr>
+                </tbody>
+              </table></div>
+              <p class="note">문항 단위로는 277개 개선, 168개 퇴보.</p>
+            </dd>
+            <dt>한계</dt>
+            <dd>논문의 10% 튜닝 프로토콜은 재현하지 않았으므로 부분 재현으로 표기합니다.</dd>
+          </dl>
+        </details>
     </article>
 
-    <!-- Card 2: OriMo -->
-    <article class="card">
-      <div class="card-top">
-        <span class="badge badge-robot">Real-Robot VLA</span>
-        <span class="kicker">IROS 2026 Robotic Origami Challenge · 2026 · 팀 OriMo</span>
-      </div>
-      <h3>양팔 로봇 종이접기 VLA의 추론 단계 축소와 실기 정지 지점 분석</h3>
-      <p>다지(multi-fingered) 양팔 로봇으로 종이를 접는 국제 챌린지. 팀은 T-Rex 기반 양팔 정책의 행동 추론을 교사 10단계에서 학생 6단계로 줄이는 증류를 수행했고, 학생 정책은 대회 장비에서 관절 명령을 중앙값 약 <strong>143 ms</strong>에 생성했습니다.</p>
+    <article class="work">
 
-      <div class="flow-strip" aria-label="실험 및 분석 흐름">
-        <div class="flow-step"><b>교사 10단계 → 학생 6단계</b><span>행동 추론 단계 증류 · 중앙값 ~143 ms</span></div>
-        <span class="flow-arrow">→</span>
-        <div class="flow-step"><b>RTX 3090×4 (8,488 updates)</b><span>두 서버 체크포인트·제출본 계보 통합</span></div>
-        <span class="flow-arrow">→</span>
-        <div class="flow-step highlight"><b>원격 실기 로그 × 영상 대조</b><span>정상 추론 후 접근 단계 조기 정지 규명</span></div>
-      </div>
-
-      <dl class="meta">
-        <dt>팀 · 환경</dt><dd>팀 OriMo · RTX 3090 × 4 멀티 GPU 서버 2대</dd>
-        <dt>담당 역할</dt><dd>분산 실험 기록·체크포인트 통합 관리 및 원격 실기 실패 분석</dd>
-      </dl>
-      <ul class="did">
-        <li>두 GPU 서버에 흩어진 정책 코드·학습 기록(본학습 8,488 업데이트)·제출 아카이브를 연결해, 어느 체크포인트가 실제 대회 로봇에서 평가됐는지 역추적할 수 있게 정리했습니다.</li>
-        <li>원격 실기 로그와 현장 영상을 프레임·명령 단위로 대조해, 다음 관절 명령을 제시간에 생성한 정책도 손이 종이에 닿기 전 접근 단계에서 멈춘 사례를 분석했습니다.</li>
-      </ul>
-      <div class="card-foot">
-        <p class="tags"><span>VLA</span><span>Step Distillation</span><span>Bimanual Manipulation</span><span>Multi-GPU</span></p>
-        <div class="more">
-          <a href="https://robotic-origami-challenge.github.io/" target="_blank" rel="noopener" class="link-btn">대회 공식 페이지 ↗</a>
-        </div>
-      </div>
+      
+        <h3>RGB·관절 상태 기반 로봇 소포 분류</h3>
+        <p class="work-meta">WarehouseSort<span class="sep">|</span>Machine Intelligence Lab<span class="sep">|</span>2026.09</p>
+        <p class="kpi"><span class="kpi-v">90.75<small>%</small></span><span class="kpi-l">시드 고정 600에피소드<span class="sep">|</span>외란 조건 73.36%</span></p>
+        <p>깊이 센서와 시뮬레이터 특권 상태 없이 RGB 영상과 관절 상태만 사용하는 Diffusion Policy 학습·평가 파이프라인을 구축했습니다. 결과 확인 전 시드를 고정한 600에피소드 평가에서 일반 조건 90.75%, 외란 조건 73.36%의 가중 소포 정렬 정확도를 확인했습니다.</p>
+        <p class="work-links"><a href="https://github.com/mrpc2003/berlin-marso-hackathon">Code</a></p>
+        <details>
+          <summary>Details</summary>
+          <dl class="spec">
+            <dt>확인하려던 문제</dt>
+            <dd>시각 입력을 RGB 카메라 한 대로 제한해도 Diffusion Policy가 소포 분류 작업을 학습할 수 있는지, 배치 무작위화 범위를 넓힌 외란 조건에서 성능이 얼마나 떨어지는지 확인했습니다.</dd>
+            <dt>본인 역할</dt>
+            <dd>Marso Hack Berlin 2026 종료 후 공개 스타터를 포크해 단독으로 진행했습니다. 정책 학습과 평가, 재현 자료 정리를 맡았습니다.</dd>
+            <dt>비교 조건</dt>
+            <dd>입력은 128×128 RGB 장면 카메라와 26차원 관절 상태입니다. 평가 시드(일반 6000–6099, 외란 8000–8099)는 체크포인트 선택 시드와 겹치지 않게 결과 확인 전에 고정했습니다. 난이도 가중치는 0.2 / 0.3 / 0.5입니다.</dd>
+            <dt>결과</dt>
+            <dd>
+              <div class="tbl"><table>
+                <thead><tr><th>정렬 정확도</th><th>Easy</th><th>Medium</th><th>Hard</th><th>가중</th></tr></thead>
+                <tbody>
+                  <tr><th>일반</th><td>99.0%</td><td>89.0%</td><td>88.5%</td><td>90.75%</td></tr>
+                  <tr><th>외란</th><td>97.5%</td><td>71.75%</td><td>64.67%</td><td>73.36%</td></tr>
+                </tbody>
+              </table></div>
+              <p class="note">각 칸 100에피소드. 에피소드 단위 전량 배치율(일반 0.98 / 0.86 / 0.76, 외란 0.95 / 0.67 / 0.41)은 따로 집계했습니다.</p>
+            </dd>
+            <dt>한계</dt>
+            <dd>로컬 프록시 평가이며 대회 공식 held-out 점수와 직접 비교할 수 없습니다. 일반 조건의 Easy는 배치가 고정돼 있어 일반화보다 반복 안정성을 보여 줍니다.</dd>
+          </dl>
+        </details>
     </article>
 
-    <!-- Card 3: MART Humanoid -->
-    <article class="card">
-      <div class="card-top">
-        <span class="badge badge-robot">Real-Robot VLA</span>
-        <span class="kicker">마트 환경 기반 휴머노이드 로봇 경진대회 · 국민대학교 로봇국 · 2026.11</span>
-      </div>
-      <h3>마트 휴머노이드 π0.5 VLA 실기 평가: 어떤 시도에서 점수를 잃었나</h3>
-      <p>휴머노이드 로봇이 마트 환경에서 바구니를 집고 이동하는 실물 경진대회. 실기 바구니 집기에 <strong>π0.5 VLA 정책</strong>을 적용해 예선 만점 1위와 본선 종합 4위를 기록했습니다.</p>
+    <article class="work">
 
-      <dl class="meta">
-        <dt>공식 결과</dt><dd><strong>예선 1위 (300 / 300점) · 본선 종합 4위 (640.042 / 1,000점)</strong></dd>
-        <dt>담당 역할</dt><dd>본선 배포 릴리스 보존 · 시도별 점수 손실 지점 분류</dd>
-      </dl>
-      <ul class="did">
-        <li>본선 현장에 배포된 정책 릴리스를 재현 가능하게 보존하고, 공식 채점표·현장 촬영 영상·실행 로그를 시도 단위로 대조해 <strong>바구니 파지 단계 중단</strong>과 <strong>파지 후 이동 단계 중단</strong>을 분리해 정리했습니다.</li>
-      </ul>
-      <div class="card-foot">
-        <p class="tags"><span>π0.5 VLA</span><span>Humanoid</span><span>Real-Robot Evaluation</span><span>Failure Taxonomy</span></p>
-        <div class="more">
-          <a href="https://cshumanoid.online/leaderboard" target="_blank" rel="noopener" class="link-btn">공식 예선 리더보드 ↗</a>
-          <a href="https://docs.google.com/spreadsheets/d/1zB2DuV-IadL6fQt2DqYGsGaSH-Lah5ChjYHWAKBEfpI/edit" target="_blank" rel="noopener" class="link-btn">공식 본선 점수표 ↗</a>
-        </div>
-      </div>
-    </article>
-
-    <!-- Card 4: Delimiter Token Scaling (NEW from Disk2 + GitHub!) -->
-    <article class="card">
-      <div class="card-top">
-        <span class="badge badge-vlm">VLM Dissection · Reproduction</span>
-        <span class="kicker">Machine Intelligence Lab · ICLR 2026 논문 재현 · 2026.07</span>
-      </div>
-      <h3>재학습 없이 구분자 은닉 상태만 키워 다중 이미지 누수를 줄일 수 있나: Qwen2.5-VL-3B 재현</h3>
-      <p>다중 이미지 입력 시 이미지 간 시각 정보가 섞이는 문제를 초기 레이어(0–3) 구분자 토큰 은닉 상태 스케일링(<code>λ=8</code>)만으로 완화하는 ICLR 2026 논문을 <strong>2× RTX PRO 6000 Blackwell</strong> 환경에서 전체 데이터셋으로 재현했습니다.</p>
-
-      <div class="viz-panel single">
-        <div class="viz-col">
-          <p class="viz-title">MuirBench 전체 공개 테스트셋 (2,600문항 전수 검증 · Qwen2.5-VL-3B)</p>
-          <div class="bar-row">
-            <div class="bar-label"><span>Blockwise Vision SDPA Baseline</span><span class="mono">37.00% (962 / 2,600)</span></div>
-            <div class="bar-track"><div class="bar-fill bar-neutral" style="width:74%"></div></div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-label"><strong>Delimiter Hidden-State Scaling (λ=8, Layer 0–3)</strong><strong class="mono good-txt">41.19% (1,071 / 2,600 · +4.19%p)</strong></div>
-            <div class="bar-track"><div class="bar-fill bar-good" style="width:82.4%"></div></div>
-          </div>
-        </div>
-      </div>
-
-      <ul class="did">
-        <li>고해상도 다중 이미지 처리 시 발생하는 비전 어텐션 메모리 급증을 막기 위해 <strong>blockwise vision SDPA</strong> 경로를 구성하여 2,600개 문항 전수 평가를 완주했습니다.</li>
-        <li>독립 무결성 검증으로 문항별 변화를 대조해 277문항 개선 / 168문항 하락(순증 +109문항)을 확인했으며, 재학습·추가 forward pass 없이 추론 비용을 유지한 채 성능이 향상됨을 보고서로 공개했습니다.</li>
-      </ul>
-      <div class="card-foot">
-        <p class="tags"><span>Qwen2.5-VL-3B</span><span>Hidden-State Intervention</span><span>SDPA</span><span>2× RTX PRO 6000</span></p>
-        <div class="more">
-          <a href="https://github.com/mrpc2003/DelimScaling" target="_blank" rel="noopener" class="link-btn">공개 재현 저장소 &amp; 보고서 (GitHub) ↗</a>
-        </div>
-      </div>
-    </article>
-
-    <!-- Card 5: TurtleBot4 + V-JEPA 2 -->
-    <article class="card">
-      <div class="card-top">
-        <span class="badge badge-sys">Embodied Systems</span>
-        <span class="kicker">운영체제의실제 · 2026.11</span>
-      </div>
-      <h3>카메라 촬영부터 로봇 이동 목표 채택까지의 종단간 지연 분해: TurtleBot4 + V-JEPA 2</h3>
-      <p>실물 모바일 로봇 카메라 영상에서 <code>V-JEPA 2</code>가 제안한 관측 영역을 RGB-D 깊이와 지도 좌표계에 투영하고, 이동 가능한 후보만 걸러 ROS 2·Nav2 목표로 전달했습니다.</p>
-
-      <div class="viz-panel single">
-        <div class="viz-col">
-          <p class="viz-title">실물 주행 모델 요청 15건 중앙값 비교</p>
-          <div class="bar-row">
-            <div class="bar-label"><span>모델 순수 추론 지연 (Inference)</span><span class="mono">182 ms</span></div>
-            <div class="bar-track"><div class="bar-fill bar-accent" style="width:39.4%"></div></div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-label"><strong>마지막 입력 프레임 촬영 → 제안 기록 완료 (End-to-End)</strong><strong class="mono">462 ms (시스템 오버헤드 +280 ms)</strong></div>
-            <div class="bar-track"><div class="bar-fill bar-warn" style="width:100%"></div></div>
-          </div>
-        </div>
-      </div>
-
-      <ul class="did">
-        <li>모델 추론 시간만으로는 실물 로봇의 반응 지연을 설명할 수 없음을 보이기 위해 촬영 시각부터 기록 시각까지 전 구간을 계측했고, 미채택 요청을 <strong>깊이 검증·프레임 대기·경로 검사·모델 관측 생략</strong> 네 범주로 분류했습니다.</li>
-      </ul>
-      <div class="card-foot">
-        <p class="tags"><span>ROS 2</span><span>Nav2</span><span>V-JEPA 2</span><span>RGB-D</span><span>End-to-End Latency</span></p>
-      </div>
-    </article>
-
-    <!-- Card 6: WarehouseSort -->
-    <article class="card">
-      <div class="card-top">
-        <span class="badge badge-robot">Imitation Learning</span>
-        <span class="kicker">Machine Intelligence Lab · 학부연구생 · 2026.09</span>
-      </div>
-      <h3>WarehouseSort: 순수 RGB 카메라 기반 로봇 소포 분류 Diffusion Policy</h3>
-      <p>Marso Hack Berlin 2026 RGB 트랙 과제. ManiSkill 3(Franka Panda) 환경에서 128×128 단일 RGB 영상과 26차원 고유수용감각만 입력받는 <strong>6.11M 파라미터 Diffusion Policy</strong>(<code>ResNet-18 + SpatialSoftmax → FiLM 1D U-Net</code>, DDPM)를 Colab T4에서 학습했습니다.</p>
-
-      <div class="viz-panel single">
-        <div class="viz-col">
-          <p class="viz-title">사전 봉인 600 에피소드 검증 (새 시드 300회 · 스트레스 조건 300회)</p>
-          <div class="bar-row">
-            <div class="bar-label"><strong>새 시드 가중 정확도 (Easy 99.0% · Med 89.0% · Hard 88.5%)</strong><strong class="mono good-txt">90.75%</strong></div>
-            <div class="bar-track"><div class="bar-fill bar-good" style="width:90.75%"></div></div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-label"><span>스트레스 무작위화 조건 가중 정확도</span><span class="mono">73.36%</span></div>
-            <div class="bar-track"><div class="bar-fill bar-accent" style="width:73.36%"></div></div>
-          </div>
-        </div>
-      </div>
-
-      <ul class="did">
-        <li>결과 열람 전 평가 시드를 고정한 600회 봉인 검증 프로토콜과 클린 클론 스모크 테스트를 구성해 체크포인트(3×35.8 MB)와 재현 노트북을 공개했습니다.</li>
-      </ul>
-      <div class="card-foot">
-        <p class="tags"><span>Diffusion Policy</span><span>ManiSkill 3</span><span>Franka Panda</span><span>Reproducibility</span></p>
-        <div class="more">
-          <a href="https://github.com/mrpc2003/berlin-marso-hackathon" target="_blank" rel="noopener" class="link-btn">공개 코드 · 체크포인트 · Colab (GitHub) ↗</a>
-        </div>
-      </div>
+      
+        <h3>종이접기·휴머노이드 로봇의 실기 평가</h3>
+        <p class="work-meta">IROS 2026 Robotic Origami Challenge<span class="sep">|</span>제21회 국제로봇콘테스트<span class="sep">|</span><span class="nowrap">2026.06 – 2026.11</span></p>
+        <p class="kpi kpi-text"><span class="kpi-v">동상</span><span class="kpi-l">제21회 국제로봇콘테스트(IRC) · 팀 수상</span></p>
+        <p>두 로봇 대회에서 학습·제출 기록과 실기 로그를 정리하고, 영상과 대조해 실패가 발생한 단계를 분류했습니다. 제21회 국제로봇콘테스트(IRC)에서는 팀이 동상을 받았습니다.</p>
+        <p class="work-links"><a href="https://robotic-origami-challenge.github.io/">IROS Challenge</a></p>
+        <details>
+          <summary>Details</summary>
+          <dl class="spec">
+            <dt>IROS 2026 · 팀 OriMo</dt>
+            <dd>2026.06 – 2026.10. Sharpa 양팔 로봇으로 종이를 접는 국제 챌린지입니다. 팀은 행동 추론 반복 횟수를 10회에서 6회로 줄이는 정책 증류를 진행했습니다. 저는 서버별 학습 기록·체크포인트와 실제 제출본의 대응 관계를 정리하고, 원격 실기 로그를 영상과 대조해 실패 발생 단계를 분류했습니다. 추론 명령이 제시간에 생성되고도 접촉 직전 접근 구간에서 멈추는 사례를 확인했습니다.</dd>
+            <dt>IRC 2026 · 팀 국민대학교 로봇국</dt>
+            <dd>2026.11. 마트 환경 기반 휴머노이드 로봇 경진대회(산업통상부·대구광역시 주최, 한국로봇산업진흥원 주관)입니다. 예선은 Isaac Sim 시뮬레이션으로, 본선은 AI Worker 실물 로봇과 π0.5 VLA로 치렀고 팀은 동상을 받았습니다. 저는 본선 현장 런타임 릴리스를 보존하고, 시도별로 파지·주행이 멈춘 단계를 대조했습니다.</dd>
+            <dt>한계</dt>
+            <dd>로그와 영상을 대조해 실패가 발생한 구간을 분류한 결과이며, 특정 모델 구성이 실패 원인임을 입증한 개입 실험은 아닙니다. 추론 반복 횟수 감소는 로봇 작업 단계 수의 감소를 뜻하지 않습니다. 대회 비공개 자료는 싣지 않습니다.</dd>
+          </dl>
+        </details>
     </article>
   </section>
 
-  <!-- 03 모델 분석 · 엔지니어링 프로젝트 -->
-  <section id="projects" class="sec">
-    <div class="sec-head">
-      <span class="num">03</span>
-      <h2>모델 분석 · 엔지니어링 프로젝트</h2>
-      <span class="sec-desc">아키텍처 재현 · 미세조정 · 가속기 연산 · 시스템 구현</span>
+  <section id="experience" class="block" aria-labelledby="h-exp">
+    <h2 id="h-exp">Experience</h2>
+    <div class="entry">
+      <h3>학부연구생 · <a href="http://mi.kookmin.ac.kr/">Machine Intelligence Lab</a></h3>
+      <p class="work-meta">국민대학교 인공지능학부<span class="sep">|</span>지도교수 이재구<span class="sep">|</span><span class="nowrap">2025.09 – 현재</span></p>
+      <p>멀티모달(VLM) 추론 개입 재현과 로봇 조작 정책 학습·실기 평가를 연구하며, 멀티 GPU Linux 서버를 구축·운용합니다.</p>
     </div>
-
-    <div class="grid">
-      <article class="tile">
-        <div class="tile-top">
-          <span class="tile-cat">MI Lab 연구 · V100-32GB</span>
-          <span class="tile-yr">2026.07</span>
-        </div>
-        <h4>ViT · Swin · ResNet-50 아키텍처·보정 재현</h4>
-        <p>ICLR 2022 <em>How Do ViTs Work?</em> 부분 재현. CIFAR-100 300ep 동일 조건에서 정확도(82.53 / 76.45 / 67.36%)·지연·피크 VRAM을 비교하고, ECE(ViT 최저)와 NLL·Brier(ResNet 최저) 역전 현상 및 ViT 8조건(2,430ep) 재현성 감사를 수행했습니다.</p>
-      </article>
-
-      <article class="tile">
-        <div class="tile-top">
-          <span class="tile-cat">MI Lab LLM 스터디</span>
-          <span class="tile-yr">2026</span>
-        </div>
-        <h4>GPT-2 124M 재현 및 DDP 최적화 분석</h4>
-        <p>바닥부터 구현 후 Hugging Face 가중치를 이식해 생성 일치를 검증했습니다. TF32·BF16·<code>torch.compile</code>·FlashAttention·Vocab Padding(50,304) 처리량 개선과 DDP <code>no_sync()</code> 그래디언트 동기화, Linear~Gated DeltaNet 구조 변화를 정리했습니다.</p>
-      </article>
-
-      <article class="tile">
-        <div class="tile-top">
-          <span class="tile-cat">자연어처리 · Tesla V100</span>
-          <span class="tile-yr">2026.05</span>
-        </div>
-        <h4>LoRA 랭크 스캔 vs 전체 미세조정 메모리 분석</h4>
-        <p><code>DistilBERT</code>/SST-2 기준 LoRA <code>r=8</code>(학습 파라미터 <strong>1.09%</strong>)로 Full FT 대비 정확도 98.9% 유지(85.89% vs 86.81%) 및 <strong>Peak CUDA 메모리 60% 절감(1,314 → 527.4 MB)</strong>을 실측하고 <code>r∈{4,8,16}</code> 및 오류 사례를 대조했습니다.</p>
-      </article>
-
-      <article class="tile">
-        <div class="tile-top">
-          <span class="tile-cat">인공지능하드웨어 · 선도주제연구</span>
-          <span class="tile-yr">2026.05</span>
-        </div>
-        <h4>im2col 행렬 타일링 &amp; 2D Systolic Array 구현</h4>
-        <p>CNN <code>im2col</code> 변환 후 타일 크기(<code>T=4, 64</code>)와 연산 방식별 지연(약 290배 차이)을 분석하고, INT8 512×512 GEMM의 WS/OS/IS 데이터플로우별 DRAM 트래픽·Roofline 계산 및 Weight-Stationary Systolic Array 시뮬레이터를 구현했습니다.</p>
-      </article>
-
-      <article class="tile">
-        <div class="tile-top">
-          <a href="https://github.com/mrpc2003/Anomaly-Detection-Public" target="_blank" rel="noopener" class="tile-link">공개 저장소 ↗</a>
-          <span class="tile-yr">2026.06</span>
-        </div>
-        <h4><a href="https://github.com/mrpc2003/Anomaly-Detection-Public" target="_blank" rel="noopener">MVTec LOCO AD 구조적·논리적 이상 탐지</a></h4>
-        <p>AutoEncoder·PatchCore·다중 레이어 특징 피라미드(MLFP KNN)를 비교하고, Pixel AU-sPRO 진단과 카테고리 부트스트랩 95% 신뢰구간·공통 실패 사례를 분석했습니다.</p>
-      </article>
-
-      <article class="tile">
-        <div class="tile-top">
-          <a href="https://github.com/mrpc2003/nerf-project-renders" target="_blank" rel="noopener" class="tile-link">NeRF 렌더 ↗</a>
-          <span class="tile-yr">2026.03–08</span>
-        </div>
-        <h4>단일 음식 사진 3D 부피 복원 &amp; NeRF 파이프라인</h4>
-        <p>MI Lab Phase I 과제에서 <code>SAM 3.1 + DepthPro + Pixal3D</code>와 크기 의존 연속 보정(Smooth Scale)으로 상수 배율 대비 오차 지표 <em>J</em>를 4.0% 줄였으며(Private 0.37 MAPE), 초기 <code>nerfacto</code> RGB·깊이 복원 실험을 함께 정리했습니다.</p>
-      </article>
-
-      <article class="tile">
-        <div class="tile-top">
-          <a href="https://github.com/mrpc2003/kmu-rec-sys-26-steam" target="_blank" rel="noopener" class="tile-link">공개 저장소 ↗</a>
-          <span class="tile-yr">2026.06</span>
-        </div>
-        <h4><a href="https://github.com/mrpc2003/kmu-rec-sys-26-steam" target="_blank" rel="noopener">KMU RecSys 26 Steam 추천 파이프라인</a></h4>
-        <p>추천시스템설계 Kaggle 대회. SVD++·LightGCN 기반 사용자-게임 상호작용 추천(Best Public <strong>0.77825</strong>)과 데이터 분리·재현성 감사 보고서를 작성했습니다.</p>
-      </article>
-
-      <article class="tile">
-        <div class="tile-top">
-          <span class="tile-cat">전공 소모임 AIM · 팀 해오름제</span>
-          <span class="tile-yr">2026</span>
-        </div>
-        <h4>AIM ChessRobot (SO-101 + SmolVLA)</h4>
-        <p>LeRobot SO-101 로봇팔 손목 카메라 마운트를 3D 설계하고, 상단 뷰 FEN 합법수 보정 보드 인식(단위 테스트 62건 통과)과 Stockfish(전략)·SmolVLA 추론 서버(조작) 분리형 안전 실행 큐를 설계했습니다.</p>
-      </article>
-
-      <article class="tile">
-        <div class="tile-top">
-          <span class="tile-cat">국민대 알파프로젝트 · 임베디드SW 본선</span>
-          <span class="tile-yr">2025</span>
-        </div>
-        <h4>CareDian — 고령자 스마트홈 음성 허브</h4>
-        <p>5인 팀 '코스메테우스'. Home Assistant 코어 서버 구축, 실물 IoT 조명·센서·가전 통합 제어 및 Wyoming 프로토콜 음성 인터페이스 연동을 담당했습니다.</p>
-      </article>
-
-      <article class="tile">
-        <div class="tile-top">
-          <a href="https://github.com/mrpc2003/mqtt-indoor-environment-monitor" target="_blank" rel="noopener" class="tile-link">공개 저장소 3건 ↗</a>
-          <span class="tile-yr">2022 · 2025</span>
-        </div>
-        <h4>KOSS IoT 모니터링 시스템 2종 &amp; C++ SnakeGame</h4>
-        <p>Raspberry Pi·ESP8266·MQTT·MongoDB·PyQt5 기반 <a href="https://github.com/mrpc2003/mqtt-indoor-environment-monitor" target="_blank" rel="noopener">실내 환경 모니터 ↗</a>, <a href="https://github.com/mrpc2003/iot-entrance-detection" target="_blank" rel="noopener">출입 감지 시스템 ↗</a>, C++11·ncurses <a href="https://github.com/mrpc2003/SnakeGame_Team10" target="_blank" rel="noopener">SnakeGame(★3) ↗</a>을 구현했습니다.</p>
-      </article>
+    <div class="entry">
+      <h3>학부 수업 실습 지원 헬퍼 (근로장학생)</h3>
+      <p class="work-meta">국민대학교 SW중심대학사업단<span class="sep">|</span><span class="nowrap">2026.03 – 현재</span></p>
+    </div>
+    <div class="entry">
+      <h3>국민대학교 인공지능학부 인공지능전공 학사</h3>
+      <p class="work-meta">소프트웨어융합대학<span class="sep">|</span><span class="nowrap">2022.03 – 2028.02 (졸업 예정)</span></p>
+      <p>전체 평점 4.16 / 4.5</p>
     </div>
   </section>
 
-  <!-- 04 대회 · 수상 -->
-  <section id="awards" class="sec">
-    <div class="sec-head">
-      <span class="num">04</span>
-      <h2>대회 · 수상</h2>
-      <span class="sec-desc">대학 및 전국 규모 공식 기록 (최신순)</span>
-    </div>
-
-    <table class="list">
-      <thead>
-        <tr><th>시기</th><th>대회 · 부문 · 역할</th><th>공식 결과 및 근거</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>2026.11</td>
-          <td><strong>마트 환경 기반 휴머노이드 로봇 경진대회</strong> · 국민대학교 로봇국 (π0.5 VLA 실기 · 점수 손실 분석)</td>
-          <td><strong class="accent-txt">예선 1위 · 본선 종합 4위</strong> · <a href="https://cshumanoid.online/leaderboard" target="_blank" rel="noopener">리더보드 ↗</a> · <a href="https://docs.google.com/spreadsheets/d/1zB2DuV-IadL6fQt2DqYGsGaSH-Lah5ChjYHWAKBEfpI/edit" target="_blank" rel="noopener">점수표 ↗</a></td>
-        </tr>
-        <tr>
-          <td>2026</td>
-          <td><strong>IROS 2026 Robotic Origami Challenge</strong> · 팀 OriMo (양팔 종이접기 VLA · 실험 기록 통합·실패 분석)</td>
-          <td>참가 · <a href="https://robotic-origami-challenge.github.io/" target="_blank" rel="noopener">대회 페이지 ↗</a></td>
-        </tr>
-        <tr>
-          <td>2025.11</td>
-          <td><strong>제23회 임베디드 소프트웨어 경진대회</strong> 스마트가전 · <em>CareDian</em> (Home Assistant·IoT 통합 담당)</td>
-          <td><strong>본선 진출</strong> · 국민대 학생설계형 알파프로젝트 선정</td>
-        </tr>
-        <tr>
-          <td>2025</td>
-          <td><strong>제3회 국민대학교 AI빅데이터 분석 경진대회</strong> · 무역 시계열 분류·회귀 (DACON)</td>
-          <td><strong>72위 / 960팀 (상위 7.5%)</strong> · <a href="https://dacon.io/myprofile/468534/competition" target="_blank" rel="noopener">DACON 프로필 ↗</a></td>
-        </tr>
-        <tr>
-          <td>2025.06</td>
-          <td><strong>국민대학교 Autodesk Fusion360 Design Contest</strong> · 접이식 워크스테이션 <em>NomadDesk Pro</em> 설계</td>
-          <td><strong>동상</strong></td>
-        </tr>
-        <tr>
-          <td>2022.01</td>
-          <td><strong>코리아로봇챔피언십 FIRST Tech Challenge (FTC) 2021-22</strong> · CAD 설계(Onshape)·소프트웨어 담당</td>
-          <td><strong>Qualcomm 장학팀</strong> 선정</td>
-        </tr>
-        <tr>
-          <td>2021.01</td>
-          <td><strong>코리아로봇챔피언십 FIRST Tech Challenge (FTC) 2020-21</strong> · 화정고 팀 5093 '메인보드'</td>
-          <td><strong>Rising Star Award</strong> · Qualcomm 장학팀 · <a href="https://youtu.be/gOtpV3jDu3M?t=3168" target="_blank" rel="noopener">시상 영상 ↗</a></td>
-        </tr>
-      </tbody>
-    </table>
-
-    <details class="sub-fold">
-      <summary>DACON 경진대회 완주 기록 전체 보기 (7건 · 상위 7.5% 포함)</summary>
-      <div class="fold-body">
-        <table class="compact-tbl">
-          <thead><tr><th>대회명</th><th>과제 유형</th><th>순위 (상위 %)</th></tr></thead>
-          <tbody>
-            <tr><td>제3회 국민대학교 AI빅데이터 분석 경진대회</td><td>무역 시계열 분류·회귀</td><td><strong>72 / 960 (7.5%)</strong></td></tr>
-            <tr><td>2025 SW중심대학 디지털 경진대회: AI부문</td><td>AI vs Human 텍스트 판별 (ROC-AUC)</td><td>61 / 271 (22.5%)</td></tr>
-            <tr><td>LG Aimers 2기 스마트 공장 제품 품질 상태 분류 해커톤</td><td>제조 센서 품질 분류</td><td>181 / 495 (36.6%)</td></tr>
-            <tr><td>문맥 기반 문장 순서 예측 AI 경진대회 (월간 데이콘)</td><td>LLM 문장 배열</td><td>83 / 204 (40.7%)</td></tr>
-            <tr><td>데이콘 × BDA 제2회 학습자 수료 예측 AI 경진대회</td><td>정형 데이터 분류</td><td>316 / 733 (43.1%)</td></tr>
-            <tr><td>2026 AI·SW중심대학 디지털 경진대회: AI부문</td><td>AI Agent 코드 제출</td><td>123 / 269 (45.7%)</td></tr>
-            <tr><td>2025 전력사용량 예측 AI 경진대회</td><td>시계열 예측 (SMAPE)</td><td>599 / 934 (64.1%)</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </details>
-
-    <details class="sub-fold">
-      <summary>고교 교내 탐구·SW 수상 및 초등 로봇대회 기록 (2015–2021)</summary>
-      <div class="fold-body">
-        <ul class="compact-list">
-          <li><b>2021.07</b> 화정고 SW 프로젝트대회 <strong>최우수상(1위)</strong> · YOLO·Unity 마스크 착용 유도 프로그램 (공동 2인, 참가 40명)</li>
-          <li><b>2020.12</b> 화정고 수학과제연구대회 <strong>우수상(2위)</strong> · 인공지능을 이용한 학교 내 실시간 마스크 착용 확인 (공동 2인, 참가 51명)</li>
-          <li><b>2019–20</b> 화정고 과학과제연구대회(미생물 연료전지 효율 향상, 공동 4인)·물리탐구실험대회·융합과학챌린지대회 <strong>장려상 3건</strong></li>
-          <li><b>2015.08</b> WCRC 2015 로봇배틀 초등부 수도권 예선 통과 · <strong>본선 진출</strong> (2인 팀)</li>
-        </ul>
-      </div>
-    </details>
+  <section id="cv" class="block" aria-labelledby="h-cv">
+    <h2 id="h-cv">CV</h2>
+    <p>1쪽 이력서(PDF)와 연락처입니다.</p>
+    <p class="work-links"><a href="cv.pdf">CV (PDF)</a><span class="dot">·</span><a href="mailto:mrpc2003@gmail.com">mrpc2003@gmail.com</a><span class="dot">·</span><a href="https://github.com/mrpc2003">github.com/mrpc2003</a></p>
   </section>
 
-  <!-- 05 학력 · 수업 · 기술 · 자격 -->
-  <section id="edu" class="sec">
-    <div class="sec-head">
-      <span class="num">05</span>
-      <h2>학력 · 수업 · 기술 · 자격</h2>
-    </div>
-
-    <dl class="two">
-      <dt>학력</dt>
-      <dd><strong>국민대학교 소프트웨어융합대학 인공지능학부 인공지능전공</strong> · 2022.03 입학, 2028.02 졸업 예정 · 전체 평점 <strong>4.16 / 4.5</strong></dd>
-
-      <dt>연구실</dt>
-      <dd><a href="http://mi.kookmin.ac.kr/" target="_blank" rel="noopener">Machine Intelligence Lab ↗</a> 학부연구생 · 로봇 학습, VLM/ViT 논문 재현, Stanford CS224R·CS231n·CS234 세미나</dd>
-
-      <dt>병역</dt>
-      <dd>대한민국 공군 만기 전역 · 제10전투비행단 항공교통 운영 보조 · 2023.05 – 2025.02</dd>
-
-      <dt>주요 수업</dt>
-      <dd>
-        <div class="course-pills">
-          <div><b>수학·이론</b> 선형대수, 응용통계학, 이산수학, 수치해석, 알고리즘</div>
-          <div><b>AI·모델링</b> 머신러닝기초, 딥러닝기초, 자연어처리, 컴퓨터비전, 생성형AI, 추천시스템설계, 선도주제연구(초저비트 LLM 경량화 분석)</div>
-          <div><b>시스템·HW</b> 엣지컴퓨팅, 인공지능하드웨어, 컴퓨터구조, 운영체제의실제(ROS 2)</div>
-        </div>
-      </dd>
-
-      <dt>GPU · 도구</dt>
-      <dd>RTX PRO 6000×2, RTX 3090×4, Tesla V100-32GB, Colab T4 실험·체크포인트 관리 · Python, PyTorch (DDP, <code>torch.compile</code>, FlashAttention, SDPA), CUDA C/C++, ROS 2·Nav2, Linux, Git, Docker</dd>
-
-      <dt>교육 · 수료</dt>
-      <dd>NVIDIA DLI <em>CUDA C/C++ 가속화 컴퓨팅 기초</em> (2022.10) · LG Aimers 2기 (2023.02) · AWS Training 6종 (2025.07) · Google AI Professional Certificate (2026)</dd>
-
-      <dt>자격증</dt>
-      <dd>Microsoft Certified: Azure AI Fundamentals (2025.11) · PCCE Python Lv.2 (2025.05) · 컴퓨터활용능력 1급 (2023.04) · JLPT N2 (2024.08) <span class="sub-inline">· 항공교통안전관리자(2023.04), ITQ A등급(2024.12), 로봇마스터 2급(2014.12)</span></dd>
-
-      <dt>학회 · 동아리</dt>
-      <dd>학회 참관: <strong>ICML 2026 · KCCV 2026 · IPIU 2026</strong> · 전공 동아리: <strong>AIM</strong>(체스로봇), <strong>KOSS</strong>(국민대 오픈소스 동아리 · 딥러닝/IoT 부트캠프), 교내 알고리즘 모각공</dd>
-    </dl>
-  </section>
-
-  <!-- 06 교육 · 멘토링 · 봉사 -->
-  <section id="teach" class="sec">
-    <div class="sec-head">
-      <span class="num">06</span>
-      <h2>가르치고 돕기</h2>
-      <span class="sec-desc">수업 실습 지원 · 로봇 강사 · 과학 봉사 (2016–2026)</span>
-    </div>
-    <ul class="timeline">
-      <li><b>2026</b><span><strong>SW중심대학사업단 학부 수업 실습 지원(헬퍼)</strong> · <em>AI 기초프로그래밍</em>(1학기), <em>AI기초원리</em>(2학기)</span></li>
-      <li><b>2023</b><span>고양어린이박물관 자원봉사 66시간(10회) · 체험물 안내 및 안전관리</span></li>
-      <li><b>2022</b><span><strong>꾸그(Gguge) 온라인 강사</strong> · 초등 대상 'E-센서보드 로봇' 6차시(센서 융합~무선 라인트레이서) 교안 직접 제작 및 실시간 수업</span></li>
-      <li><b>2022</b><span>모교 화정고 '졸업생과의 만남' 초청 강사 · 「공학계열 입시 준비과정」 2시간 특강</span></li>
-      <li><b>2019–20</b><span>고양어린이박물관 영메이커 실험 도우미(2020) · 초등생 영상 제작 체험 부스 운영(오금초·파주초, 2019)</span></li>
-      <li><b>2016–18</b><span>KIFGA 과학 체험 부스 기획·운영(초등생 약 60명, 2018) · 중학교 R&amp;E 후배 연구팀 SW 멘토링(2017) · 초등 영재지원 사사 튜터(2016)</span></li>
-    </ul>
-  </section>
-
-  <!-- 07 이전 성장 기록 -->
-  <section id="earlier" class="sec">
-    <div class="sec-head">
-      <span class="num">07</span>
-      <h2>이전 성장 기록</h2>
-      <span class="sec-desc">초등 영재학급 → 중학 학술동아리 → 고교 FTC 로봇팀</span>
-    </div>
-    <div class="eras">
-      <div class="era-card">
-        <p class="era-yr">2019 – 2021</p>
-        <h4>화정고등학교</h4>
-        <ul>
-          <li><strong>로봇 동아리 '메인보드'</strong>: FTC 2시즌 연속 출전(Rising Star Award, Qualcomm 장학팀 2회), 메카넘휠·카메라 자율주행 농구 슈팅 로봇</li>
-          <li><strong>초기 컴퓨터 비전 탐구</strong>: 교내 실시간 마스크 착용 확인 연구(2020) → YOLO·Unity 착용 유도 프로그램(2021)</li>
-          <li>드론 동아리 '이카루스'(조도센서 자동 이착륙) · 경기꿈의대학(R 빅데이터 시각화, 인공지능과 딥러닝)</li>
-        </ul>
-      </div>
-      <div class="era-card">
-        <p class="era-yr">2016 – 2018</p>
-        <h4>신능중학교</h4>
-        <ul>
-          <li><strong>KIFGA 청소년학술동아리 '샤를로트'</strong>: 한국과학창의재단 지원 청소년 영상 제작 과정 연구(공동 3인, 학생논문집 수록)</li>
-          <li>경기꿈의학교 '샤를로트' 영상·미디어 창작 · <a href="https://www.youtube.com/@charlottedream2765/videos" target="_blank" rel="noopener">공개 채널 ↗</a></li>
-        </ul>
-      </div>
-      <div class="era-card">
-        <p class="era-yr">2010 – 2015</p>
-        <h4>신능초등학교</h4>
-        <ul>
-          <li><strong>고양시정보과학영재학급 (4–6학년)</strong>: 알고리즘·순서도 교육 및 Scratch 인도수학 프로그램 설계·구현</li>
-          <li>고양꿈돌이 과학축제 '수술로봇' 체험부스 기획·운영(2014) · 로봇마스터 2급 취득(2014) · WCRC 로봇배틀 본선 진출(2015)</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <footer class="site-footer">
-    <div class="footer-left">
-      <strong>김우현 · Woohyun Kim</strong>
-      <span>국민대학교 인공지능학부 · Machine Intelligence Lab 학부연구생</span>
-    </div>
-    <div class="footer-right">
-      <a href="mailto:mrpc2003@gmail.com">mrpc2003@gmail.com</a>
-      <span>·</span>
-      <a href="cv.pdf" target="_blank" rel="noopener">CV (PDF) ↗</a>
-      <span>·</span>
-      <span class="muted">최종 업데이트 2026.11.25</span>
-    </div>
-  </footer>
-
+  <footer class="footer">© 2026 WOOHYUN KIM · UPDATED 2026.11</footer>
 </main>
+
 </body>
 </html>
