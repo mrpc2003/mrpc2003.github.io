@@ -5,150 +5,824 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>김우현 · Woohyun Kim</title>
 <meta name="description" content="국민대학교 인공지능학부 3학년, Machine Intelligence Lab 학부연구생 김우현. 다중 이미지 VLM 추론 개입 재현과 로봇 조작 정책(Diffusion Policy·VLA)의 실기 평가를 연구합니다.">
-<meta name="color-scheme" content="light">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="김우현 · Woohyun Kim">
+<meta property="og:description" content="국민대학교 인공지능학부 3학년, Machine Intelligence Lab 학부연구생 김우현. 다중 이미지 VLM 추론 개입 재현과 로봇 조작 정책(Diffusion Policy·VLA)의 실기 평가를 연구합니다.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mrpc2003.github.io/">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23191f28'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='700' font-size='14' fill='%23ffffff'%3EWK%3C/text%3E%3Ccircle cx='25' cy='8' r='2.5' fill='%233182f6'/%3E%3C/svg%3E">
+<script>
+(() => {
+  try {
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.dataset.theme = saved === 'dark' || saved === 'light' ? saved : (prefersDark ? 'dark' : 'light');
+  } catch (_) {
+    document.documentElement.dataset.theme = 'light';
+  }
+})();
+</script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&amp;family=Noto+Sans+KR:wght@300;400;500&amp;display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap">
 <link rel="stylesheet" href="style.css">
+<script src="main.js" defer></script>
 </head>
 <body>
 
-<aside class="side">
-  <div class="side-inner">
-    <div class="profile">
-      <h1 class="name">김우현</h1>
-      <p class="en">WOOHYUN KIM</p>
-      <p class="tag">VLA · EFFICIENT AI</p>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html">김우현 <span class="brand-badge">VLA · AI</span></a>
+    <div class="nav-wrap">
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="#research">Research</a>
+        <a href="#projects">Projects</a>
+        <a href="#awards">Awards</a>
+        <a href="#experience">Experience</a>
+        <a href="#certs">Certifications</a>
+        <a href="archive.html">Archive</a>
+      </nav>
     </div>
-    <p class="affil">국민대학교 인공지능학부 3학년<br><a href="http://mi.kookmin.ac.kr/">Machine Intelligence Lab</a> 학부연구생</p>
-
-    <nav class="nav" aria-label="주요 메뉴">
-      <a href="#research"><span class="no">01</span>Research</a>
-      <a href="#experience"><span class="no">02</span>Experience</a>
-      <a href="#cv"><span class="no">03</span>CV</a>
-    </nav>
-
-    <div class="contact">
-      <h2 class="side-h">Contact</h2>
-      <div class="kv"><span class="k">EMAIL</span><a class="v" href="mailto:mrpc2003@kookmin.ac.kr">mrpc2003@kookmin.ac.kr</a></div>
-      <div class="kv"><span class="k">GITHUB</span><a class="v" href="https://github.com/mrpc2003">github.com/mrpc2003</a></div>
-      <div class="kv"><span class="k">LINKEDIN</span><a class="v" href="https://www.linkedin.com/in/woohyun-kim-118433126/">woohyun-kim-118433126</a></div>
-      <div class="kv"><span class="k">CV</span><a class="v" href="cv.pdf">cv.pdf</a></div>
+    <div class="header-actions">
+      <button id="theme-toggle" class="icon-btn" type="button" aria-pressed="false" aria-label="다크 모드로 전환">
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79Z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+      <a class="btn-cv" href="cv.pdf">CV</a>
     </div>
   </div>
-</aside>
+</header>
 
-<main class="main">
+<main>
 
-  <section id="about" class="block" aria-labelledby="h-about">
-    <h2 id="h-about">About</h2>
-    <p class="bio">제한된 메모리와 연산 자원 안에서 시각·언어·행동(VLA) 및 멀티모달 모델의 동작 안정성과 추론 효율을 함께 평가하는 연구에 관심이 있습니다. 다중 이미지 VLM 추론 개입 재현과 로봇 조작 정책(Diffusion Policy·VLA)의 실기 평가를 중심으로 연구하고 있습니다.</p>
-  </section>
+  <section id="about" class="hero-wrap" aria-labelledby="h-about">
+    <div class="container hero">
+      <div>
+        <div class="status-pill"><span class="status-dot" aria-hidden="true"></span><span>Machine Intelligence Lab · 국민대학교 AI학부</span></div>
+        <h1 id="h-about">김우현 <span>Woohyun Kim</span></h1>
+        <p class="affil">국민대학교 인공지능학부 3학년 · <a href="http://mi.kookmin.ac.kr/" target="_blank" rel="noopener">Machine Intelligence Lab</a> 학부연구생 (지도교수 이재구)</p>
+        <p class="bio">제한된 메모리와 연산 자원 안에서 시각·언어·행동(VLA) 및 멀티모달 모델의 동작 안정성과 추론 효율을 함께 평가하는 연구에 관심이 있습니다. 다중 이미지 VLM 추론 개입 재현과 로봇 조작 정책(Diffusion Policy·VLA)의 실기 평가를 중심으로 연구하고 있습니다.</p>
+        <div class="cta">
+          <a class="btn primary" href="cv.pdf">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 18v-6M9.5 15.5 12 18l2.5-2.5"/></svg>
+            <span>CV (PDF)</span>
+          </a>
+          <a class="btn" href="https://github.com/mrpc2003" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            <span>GitHub</span>
+          </a>
+          <a class="btn" href="https://www.linkedin.com/in/woohyun-kim-118433126/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            <span>LinkedIn</span>
+          </a>
+          <a class="btn" href="mailto:mrpc2003@kookmin.ac.kr">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <span>Email</span>
+          </a>
+        </div>
+      </div>
 
-  <section id="research" class="block" aria-labelledby="h-research">
-    <h2 id="h-research">Research</h2>
-
-    <article class="work">
-
-      
-        <h3>다중 이미지 VLM의 구분자 스케일링 재현</h3>
-        <p class="work-meta">ICLR 2026 논문 독립 재현<span class="sep">|</span>Machine Intelligence Lab<span class="sep">|</span>2026.07</p>
-        <p class="kpi"><span class="kpi-v">+4.19<small>%p</small></span><span class="kpi-l">MuirBench 2,600문항<span class="sep">|</span>37.00% → 41.19%</span></p>
-        <p>Qwen2.5-VL-3B의 구분자 은닉 상태 스케일링을 원저자 공개 코드를 기반으로 독립 재현하고, 고해상도 비전 어텐션의 메모리 문제에 대응하는 블록 단위 SDPA 평가 경로를 구현했습니다. MuirBench 공개 벤치마크 전체에서 기본 설정 대비 개입 설정의 정확도가 오르는 경향을 부분 재현했습니다.</p>
-        <p class="work-links"><a href="https://github.com/mrpc2003/DelimScaling">Code &amp; Report</a><span class="dot">·</span><a href="https://proceedings.iclr.cc/paper_files/paper/2026/hash/aebf6284fe85a8f44b4785d41bc8249a-Abstract-Conference.html">Paper</a></p>
-        <details>
-          <summary>Details</summary>
-          <dl class="spec">
-            <dt>확인하려던 문제</dt>
-            <dd>이미지 사이 구분자 토큰의 은닉 상태를 키우는 개입이 다중 이미지 이해 정확도를 높인다는 논문 결과가 다른 실행 환경에서도 나타나는지 확인했습니다.</dd>
-            <dt>본인 역할</dt>
-            <dd>원저자 공개 구현(<a href="https://github.com/MYMY-young/DelimScaling">MYMY-young/DelimScaling</a>)으로 실행 환경을 구성하고, 저장소의 4-process FlashAttention-2 경로 대신 블록 단위 비전 SDPA 평가 경로를 구현했습니다.</dd>
-            <dt>비교 조건</dt>
-            <dd>Qwen2.5-VL-3B, 개입 레이어 0–3, 스케일 λ=8, MuirBench 전체 2,600문항, 2× RTX PRO 6000 Blackwell.</dd>
-            <dt>결과</dt>
-            <dd>
-              <div class="tbl"><table>
-                <thead><tr><th></th><th>기본</th><th>개입</th><th>차이</th></tr></thead>
-                <tbody>
-                  <tr><th>논문 보고</th><td>37.31%</td><td>42.42%</td><td>+5.11%p</td></tr>
-                  <tr><th>로컬 재현</th><td>37.00%</td><td>41.19%</td><td>+4.19%p</td></tr>
-                </tbody>
-              </table></div>
-              <p class="note">문항 단위로는 277개 개선, 168개 퇴보.</p>
-            </dd>
-            <dt>한계</dt>
-            <dd>논문의 10% 튜닝 프로토콜은 재현하지 않았으므로 부분 재현으로 표기합니다.</dd>
-          </dl>
-        </details>
-    </article>
-
-    <article class="work">
-        <h3>SO-ARM 101 기반 VLA 체스 로봇</h3>
-        <p class="work-meta">AIM ChessRobot<span class="sep">|</span>AIM 동아리 3인 팀<span class="sep">|</span>2026</p>
-        <p>3인 팀으로 SO-ARM 101 로봇팔과 Jetson Orin Nano를 연결하고 텔레오퍼레이션으로 시연 데이터를 수집했습니다. 원격 Policy Server의 SmolVLA(450M)가 계산한 action chunk를 Jetson이 비동기로 받아 안전 게이트를 거쳐 실행하는 구조를 만들었고, 실물에서 SmolVLA 정책으로 체스말 1개를 집는 데 성공했습니다.</p>
-        <details>
-          <summary>Details</summary>
-          <dl class="spec">
-            <dt>확인하려던 문제</dt>
-            <dd>엣지 디바이스(Jetson)와 원격 정책 서버로 나눈 구성에서 VLA 정책이 실물 체스말을 집고 옮길 수 있는지 확인하는 것이 목표입니다. 어떤 수를 둘지는 python-chess·Stockfish가 맡고, VLA는 집기·옮기기 조작만 담당하도록 역할을 나눴습니다.</dd>
-            <dt>구성</dt>
-            <dd>SO-ARM 101 + Jetson Orin Nano 8GB, 손목 카메라 마운트 직접 설계. Jetson은 관측 수집·action queue·안전 게이트(clamp, timeout, stale action 무시, E-stop)를 맡고, Policy Server는 LeRobot·SmolVLA로 action chunk를 계산합니다. top-view 호모그래피로 8×8 보드 점유를 인식하고 python-chess로 합법수를 검증합니다.</dd>
-            <dt>진행 범위</dt>
-            <dd>캘리브레이션, 텔레오퍼레이션 시연 데이터 수집, 정책 서버–Jetson 실행 구조 구성 후 실물에서 SmolVLA 정책으로 체스말 1개 집기에 성공했습니다.</dd>
-            <dt>한계</dt>
-            <dd>체스 한 수 전체(집기–이동–놓기)의 자동 실행과 반복 성공률 측정은 아직 진행 전입니다. 코드는 비공개 팀 자료라 링크를 싣지 않습니다.</dd>
-          </dl>
-        </details>
-    </article>
-
-    <article class="work">
-
-      
-        <h3>종이접기·휴머노이드 로봇의 실기 평가</h3>
-        <p class="work-meta">IROS 2026 Robotic Origami Challenge<span class="sep">|</span>제21회 국제로봇콘테스트<span class="sep">|</span><span class="nowrap">2026.06 – 2026.11</span></p>
-        <p class="kpi kpi-text"><span class="kpi-v">동상</span><span class="kpi-l">제21회 국제로봇콘테스트(IRC) · 팀 수상</span></p>
-        <p>두 로봇 대회에서 학습·제출 기록과 실기 로그를 정리하고, 영상과 대조해 실패가 발생한 단계를 분류했습니다. 제21회 국제로봇콘테스트(IRC)에서는 팀이 동상을 받았습니다.</p>
-        <p class="work-links"><a href="https://robotic-origami-challenge.github.io/">IROS Challenge</a></p>
-        <details>
-          <summary>Details</summary>
-          <dl class="spec">
-            <dt>IROS 2026 · 팀 OriMo</dt>
-            <dd>2026.06 – 2026.10. Sharpa 양팔 로봇으로 종이를 접는 국제 챌린지입니다. 팀은 정책 증류로 양팔 로봇의 행동 명령을 생성할 때 필요한 추론 반복을 10회에서 6회로 줄였습니다. 저는 서버별 학습 기록·체크포인트와 실제 제출본의 대응 관계를 정리하고, 원격 실기 로그를 영상과 대조해 실패 발생 단계를 분류했습니다. 추론 명령이 제시간에 생성되고도 접촉 직전 접근 구간에서 멈추는 사례를 확인했습니다.</dd>
-            <dt>IRC 2026 · 팀 국민대학교 로봇국</dt>
-            <dd>2026.11. 마트 환경 기반 휴머노이드 로봇 경진대회(산업통상부·대구광역시 주최, 한국로봇산업진흥원 주관)입니다. 팀은 Isaac Sim으로 예선을 치렀습니다. 본선에서는 AI Worker 실물 로봇의 바구니 집기에 π0.5 VLA를 사용했고, 대회에서 동상을 받았습니다. 저는 본선 현장 런타임 릴리스를 보존하고, 시도별로 파지·주행이 멈춘 단계를 대조했습니다.</dd>
-            <dt>한계</dt>
-            <dd>로그와 영상을 대조해 실패가 발생한 구간을 분류한 결과이며, 특정 모델 구성이 실패 원인임을 입증한 개입 실험은 아닙니다. 대회 비공개 자료는 싣지 않습니다.</dd>
-          </dl>
-        </details>
-    </article>
-  </section>
-
-  <section id="experience" class="block" aria-labelledby="h-exp">
-    <h2 id="h-exp">Experience</h2>
-    <div class="entry">
-      <h3>학부연구생 · <a href="http://mi.kookmin.ac.kr/">Machine Intelligence Lab</a></h3>
-      <p class="work-meta">국민대학교 인공지능학부<span class="sep">|</span>지도교수 이재구<span class="sep">|</span><span class="nowrap">2025.12 – 현재</span></p>
-      <p>멀티모달(VLM) 추론 개입 재현과 로봇 조작 정책 학습·실기 평가를 연구하며, 멀티 GPU Linux 서버를 구축·운용합니다. Stanford CS231n·CS224R 강의를 함께 공부했습니다.</p>
-    </div>
-    <div class="entry">
-      <h3>학부 수업 실습 지원 헬퍼 (근로장학생)</h3>
-      <p class="work-meta">국민대학교 SW중심대학사업단<span class="sep">|</span><span class="nowrap">2026.03 – 현재</span></p>
-    </div>
-    <div class="entry">
-      <h3>국민대학교 인공지능학부 인공지능전공 학사</h3>
-      <p class="work-meta">소프트웨어융합대학<span class="sep">|</span><span class="nowrap">2022.03 – 2028.02 (졸업 예정)</span></p>
-      <p>전체 평점 4.16 / 4.5</p>
+      <div class="highlights" aria-label="주요 성과 요약">
+        <div class="stat">
+          <span class="stat-k">IRC 2026</span>
+          <div class="stat-v">동상</div>
+          <div class="stat-l">제21회 국제로봇콘테스트 · 예선 1위·본선 4위</div>
+        </div>
+        <div class="stat">
+          <span class="stat-k">ICLR 2026 REPRO</span>
+          <div class="stat-v">+4.19%p</div>
+          <div class="stat-l">MuirBench 2,600문항 독립 재현 (Qwen2.5-VL-3B)</div>
+        </div>
+        <div class="stat">
+          <span class="stat-k">UNDERGRAD GPA</span>
+          <div class="stat-v">4.16 / 4.5</div>
+          <div class="stat-l">국민대학교 인공지능학부 전체 평점</div>
+        </div>
+        <div class="stat">
+          <span class="stat-k">DESIGN CONTEST</span>
+          <div class="stat-v">동상</div>
+          <div class="stat-l">Autodesk Fusion360 Design Contest · 2025</div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section id="cv" class="block" aria-labelledby="h-cv">
-    <h2 id="h-cv">CV</h2>
-    <p>1쪽 이력서(PDF)와 연락처입니다.</p>
-    <p class="work-links"><a href="cv.pdf">CV (PDF)</a><span class="dot">·</span><a href="mailto:mrpc2003@kookmin.ac.kr">mrpc2003@kookmin.ac.kr</a><span class="dot">·</span><a href="https://github.com/mrpc2003">github.com/mrpc2003</a><span class="dot">·</span><a href="https://www.linkedin.com/in/woohyun-kim-118433126/">LinkedIn</a></p>
+  <section id="research" class="section" aria-labelledby="h-research">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow"><span class="eyebrow-no">01</span>SELECTED RESEARCH</p>
+        <h2 id="h-research">대표 연구</h2>
+      </div>
+
+      <article class="feature">
+        <div class="feature-media has-chart">
+          <figure class="chart">
+            <figcaption class="chart-head">
+              <span class="chart-title">MuirBench 전체 2,600문항 정확도</span>
+              <span class="chart-deltas">
+                <span class="delta-pill subtle">논문 +5.11%p</span>
+                <span class="delta-pill">로컬 +4.19%p</span>
+              </span>
+            </figcaption>
+            <div class="chart-row">
+              <span class="chart-label">논문 기본</span>
+              <div class="track"><div class="fill" style="--w:48.7%"></div></div>
+              <span class="chart-val">37.31%</span>
+            </div>
+            <div class="chart-row">
+              <span class="chart-label">논문 개입</span>
+              <div class="track"><div class="fill accent" style="--w:82.8%"></div></div>
+              <span class="chart-val">42.42%</span>
+            </div>
+            <div class="chart-row">
+              <span class="chart-label">로컬 기본</span>
+              <div class="track"><div class="fill" style="--w:46.7%"></div></div>
+              <span class="chart-val">37.00%</span>
+            </div>
+            <div class="chart-row">
+              <span class="chart-label">로컬 개입</span>
+              <div class="track"><div class="fill accent" style="--w:74.6%"></div></div>
+              <span class="chart-val">41.19%</span>
+            </div>
+            <p class="chart-caption">Qwen2.5-VL-3B · layer 0–3, λ=8 · scale 30%–45%</p>
+          </figure>
+        </div>
+
+        <div class="feature-body">
+          <h3>다중 이미지 VLM의 구분자 스케일링 재현</h3>
+          <p class="work-meta">ICLR 2026 논문 독립 재현<span class="sep">|</span>Machine Intelligence Lab<span class="sep">|</span><span class="mono">2026.07</span></p>
+          <p class="kpi"><span class="kpi-v">+4.19<small>%p</small></span><span class="kpi-l">37.00% → 41.19% (MuirBench 2,600문항)</span></p>
+          <p class="feature-desc">Qwen2.5-VL-3B의 구분자 은닉 상태 스케일링을 원저자 공개 코드를 기반으로 독립 재현하고, 고해상도 비전 어텐션의 메모리 문제에 대응하는 블록 단위 SDPA 평가 경로를 구현했습니다. MuirBench 공개 벤치마크 전체에서 기본 설정 대비 개입 설정의 정확도가 오르는 경향을 부분 재현했습니다.</p>
+          <div class="tags">
+            <span class="tag">VLM</span>
+            <span class="tag">Reproduction</span>
+            <span class="tag">Qwen2.5-VL</span>
+            <span class="tag">PyTorch</span>
+          </div>
+          <p class="links">
+            <a href="https://github.com/mrpc2003/DelimScaling" target="_blank" rel="noopener">Code &amp; Report</a>
+            <a href="https://proceedings.iclr.cc/paper_files/paper/2026/hash/aebf6284fe85a8f44b4785d41bc8249a-Abstract-Conference.html" target="_blank" rel="noopener">Paper</a>
+            <a href="https://github.com/MYMY-young/DelimScaling" target="_blank" rel="noopener">원저자 코드</a>
+          </p>
+          <details>
+            <summary>자세히 보기</summary>
+            <dl class="spec">
+              <dt>확인하려던 문제</dt>
+              <dd>이미지 사이 구분자 토큰의 은닉 상태를 키우는 개입이 다중 이미지 이해 정확도를 높인다는 논문 결과가 다른 실행 환경에서도 나타나는지 확인했습니다.</dd>
+              <dt>본인 역할</dt>
+              <dd>원저자 공개 구현(<a href="https://github.com/MYMY-young/DelimScaling" target="_blank" rel="noopener">MYMY-young/DelimScaling</a>)으로 실행 환경을 구성하고, 저장소의 4-process FlashAttention-2 경로 대신 블록 단위 비전 SDPA 평가 경로를 구현했습니다.</dd>
+              <dt>비교 조건</dt>
+              <dd>Qwen2.5-VL-3B, 개입 레이어 0–3, 스케일 λ=8, MuirBench 전체 2,600문항, 2× RTX PRO 6000 Blackwell.</dd>
+              <dt>결과</dt>
+              <dd>
+                <div class="tbl"><table>
+                  <thead><tr><th></th><th>기본</th><th>개입</th><th>차이</th></tr></thead>
+                  <tbody>
+                    <tr><th>논문 보고</th><td>37.31%</td><td>42.42%</td><td>+5.11%p</td></tr>
+                    <tr><th>로컬 재현</th><td>37.00%</td><td>41.19%</td><td>+4.19%p</td></tr>
+                  </tbody>
+                </table></div>
+                <p class="note">문항 단위로는 277개 개선, 168개 퇴보.</p>
+              </dd>
+              <dt>한계</dt>
+              <dd>논문의 10% 튜닝 프로토콜은 재현하지 않았으므로 부분 재현으로 표기합니다.</dd>
+            </dl>
+          </details>
+        </div>
+      </article>
+
+      <article class="feature">
+        <div class="feature-media">
+          <img src="assets/img/chessrobot.jpg" alt="SO-ARM 101 로봇팔과 체스판 실물 셋업" width="1200" height="732">
+        </div>
+
+        <div class="feature-body">
+          <h3>SO-ARM 101 기반 VLA 체스 로봇</h3>
+          <p class="work-meta">AIM ChessRobot<span class="sep">|</span>AIM 동아리 3인 팀<span class="sep">|</span><span class="mono">2026</span></p>
+          <p class="kpi kpi-text"><span class="kpi-v">체스말 1개 집기 성공</span><span class="kpi-l">SmolVLA(450M) 실물 정책</span></p>
+          <p class="feature-desc">3인 팀으로 SO-ARM 101 로봇팔과 Jetson Orin Nano를 연결하고 텔레오퍼레이션으로 시연 데이터를 수집했습니다. 원격 Policy Server의 SmolVLA(450M)가 계산한 action chunk를 Jetson이 비동기로 받아 안전 게이트를 거쳐 실행하는 구조를 만들었고, 실물에서 SmolVLA 정책으로 체스말 1개를 집는 데 성공했습니다.</p>
+          <div class="tags">
+            <span class="tag">VLA</span>
+            <span class="tag">SmolVLA</span>
+            <span class="tag">LeRobot</span>
+            <span class="tag">Jetson Orin Nano</span>
+          </div>
+          <p class="links-muted">비공개 팀 자료(링크 제외)</p>
+          <details>
+            <summary>자세히 보기</summary>
+            <dl class="spec">
+              <dt>확인하려던 문제</dt>
+              <dd>엣지 디바이스(Jetson)와 원격 정책 서버로 나눈 구성에서 VLA 정책이 실물 체스말을 집고 옮길 수 있는지 확인하는 것이 목표입니다. 어떤 수를 둘지는 python-chess·Stockfish가 맡고, VLA는 집기·옮기기 조작만 담당하도록 역할을 나눴습니다.</dd>
+              <dt>구성</dt>
+              <dd>SO-ARM 101 + Jetson Orin Nano 8GB, 손목 카메라 마운트 직접 설계. Jetson은 관측 수집·action queue·안전 게이트(clamp, timeout, stale action 무시, E-stop)를 맡고, Policy Server는 LeRobot·SmolVLA로 action chunk를 계산합니다. top-view 호모그래피로 8×8 보드 점유를 인식하고 python-chess로 합법수를 검증합니다.</dd>
+              <dt>진행 범위</dt>
+              <dd>캘리브레이션, 텔레오퍼레이션 시연 데이터 수집, 정책 서버–Jetson 실행 구조 구성 후 실물에서 SmolVLA 정책으로 체스말 1개 집기에 성공했습니다.</dd>
+              <dt>한계</dt>
+              <dd>체스 한 수 전체(집기–이동–놓기)의 자동 실행과 반복 성공률 측정은 아직 진행 전입니다. 코드는 비공개 팀 자료라 링크를 싣지 않습니다.</dd>
+            </dl>
+          </details>
+        </div>
+      </article>
+
+      <article class="feature">
+        <div class="feature-media has-panel">
+          <div class="eval-panel">
+            <div class="eval-panel-head">
+              <span>REAL-ROBOT POLICY EVALUATION</span>
+              <span>2026.06 – 11</span>
+            </div>
+            <div class="eval-track">
+              <div class="eval-top">
+                <span class="eval-name">IRC 2026 · 국민대학교 로봇국</span>
+                <span class="eval-badge gold">예선 1위 · 본선 4위 · 동상</span>
+              </div>
+              <p class="eval-detail">Isaac Sim 예선 및 실물 AI Worker(π0.5 VLA) 파지·주행 런타임 릴리스 보존과 시도별 실패 단계 대조</p>
+            </div>
+            <div class="eval-track">
+              <div class="eval-top">
+                <span class="eval-name">IROS 2026 · Team OriMo</span>
+                <span class="eval-badge">10 → 6 step 정책 증류</span>
+              </div>
+              <p class="eval-detail">원격 양팔 종이접기 챌린지 학습·제출 계보 통합 및 원격 실기 로그–영상 접근 구간 정지 분류</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-body">
+          <h3>종이접기·휴머노이드 로봇의 실기 평가</h3>
+          <p class="work-meta">IROS 2026 Robotic Origami Challenge<span class="sep">|</span>제21회 국제로봇콘테스트<span class="sep">|</span><span class="mono nowrap">2026.06 – 2026.11</span></p>
+          <p class="kpi kpi-text"><span class="kpi-v">동상</span><span class="kpi-l">제21회 국제로봇콘테스트(IRC) · 예선 1위·본선 4위</span></p>
+          <p class="feature-desc">두 로봇 대회에서 학습·제출 기록과 실기 로그를 정리하고, 영상과 대조해 실패가 발생한 단계를 분류했습니다. 제21회 국제로봇콘테스트(IRC)에서는 팀이 동상을 받았습니다.</p>
+          <div class="tags">
+            <span class="tag">Robot Policy Eval</span>
+            <span class="tag">π0.5</span>
+            <span class="tag">Isaac Sim</span>
+            <span class="tag">Bimanual</span>
+          </div>
+          <p class="links">
+            <a href="https://robotic-origami-challenge.github.io/" target="_blank" rel="noopener">IROS Challenge</a>
+            <a href="https://cshumanoid.online/leaderboard" target="_blank" rel="noopener">IRC 예선 리더보드</a>
+            <a href="https://docs.google.com/spreadsheets/d/1zB2DuV-IadL6fQt2DqYGsGaSH-Lah5ChjYHWAKBEfpI/edit" target="_blank" rel="noopener">IRC 본선 점수표</a>
+          </p>
+          <details>
+            <summary>자세히 보기</summary>
+            <dl class="spec">
+              <dt>IROS 2026 · 팀 OriMo</dt>
+              <dd>2026.06 – 2026.10. 원격 양팔 로봇으로 종이를 접는 국제 챌린지입니다. 팀은 정책 증류로 양팔 로봇의 행동 명령을 생성할 때 필요한 추론 반복을 10회에서 6회로 줄였습니다. 저는 서버별 학습 기록·체크포인트와 실제 제출본의 대응 관계를 정리하고, 원격 실기 로그를 영상과 대조해 실패 발생 단계를 분류했습니다. 추론 명령이 제시간에 생성되고도 접촉 직전 접근 구간에서 멈추는 사례를 확인했습니다.</dd>
+              <dt>IRC 2026 · 팀 국민대학교 로봇국</dt>
+              <dd>2026.11. 마트 환경 기반 휴머노이드 로봇 경진대회(산업통상부·대구광역시 주최, 한국로봇산업진흥원 주관)입니다. 팀은 Isaac Sim으로 예선을 치렀습니다. 본선에서는 AI Worker 실물 로봇의 바구니 집기에 π0.5 VLA를 사용했고, 대회에서 동상을 받았습니다. 저는 본선 현장 런타임 릴리스를 보존하고, 시도별로 파지·주행이 멈춘 단계를 대조했습니다.</dd>
+              <dt>한계</dt>
+              <dd>로그와 영상을 대조해 실패가 발생한 구간을 분류한 결과이며, 특정 모델 구성이 실패 원인임을 입증한 개입 실험은 아닙니다. 대회 비공개 자료는 싣지 않습니다.</dd>
+            </dl>
+          </details>
+        </div>
+      </article>
+    </div>
   </section>
 
-  <footer class="footer">© 2026 WOOHYUN KIM · UPDATED 2026.11</footer>
+  <section id="projects" class="section alt" aria-labelledby="h-projects">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow"><span class="eyebrow-no">02</span>PROJECTS</p>
+        <h2 id="h-projects">프로젝트</h2>
+        <p class="lead">연구실·수업·대회에서 직접 구현한 프로젝트입니다. 공개 가능한 코드와 자료를 연결했습니다.</p>
+      </div>
+
+      <div class="filters" role="group" aria-label="프로젝트 분야 필터">
+        <button type="button" data-filter="all" aria-pressed="true">전체 <span class="cnt">16</span></button>
+        <button type="button" data-filter="robotics" aria-pressed="false">로보틱스 <span class="cnt">2</span></button>
+        <button type="button" data-filter="vision" aria-pressed="false">비전 <span class="cnt">4</span></button>
+        <button type="button" data-filter="llm" aria-pressed="false">LLM·NLP <span class="cnt">3</span></button>
+        <button type="button" data-filter="efficient" aria-pressed="false">효율화·시스템 <span class="cnt">3</span></button>
+        <button type="button" data-filter="data" aria-pressed="false">데이터·추천 <span class="cnt">1</span></button>
+        <button type="button" data-filter="iot" aria-pressed="false">IoT·임베디드 <span class="cnt">2</span></button>
+        <button type="button" data-filter="sw" aria-pressed="false">소프트웨어 <span class="cnt">2</span></button>
+        <button type="button" data-filter="design" aria-pressed="false">디자인 <span class="cnt">1</span></button>
+      </div>
+
+      <div class="grid">
+        <article class="card" data-cat="robotics">
+          <div class="card-media">
+            <img src="assets/img/warehousesort.jpg" alt="WarehouseSort 순수 RGB Diffusion Policy 평가 화면" width="1024" height="512">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">2026 · MI Study 07</div>
+            <h3>WarehouseSort 순수 RGB Diffusion Policy</h3>
+            <p>깊이 센서·시뮬레이터 특권 상태 없이 RGB 영상과 관절 상태만 쓰는 Diffusion Policy를 Colab T4로 학습했습니다. 결과 확인 전 시드를 고정한 600에피소드 평가에서 가중 소포 정렬 정확도 90.75%(외란 조건 73.36%)를 기록했습니다.</p>
+            <div class="tags"><span class="tag">ManiSkill 3</span><span class="tag">Diffusion Policy</span></div>
+            <p class="links">
+              <a href="https://github.com/mrpc2003/berlin-marso-hackathon" target="_blank" rel="noopener">GitHub</a>
+              <a href="https://github.com/mrpc2003/berlin-marso-hackathon/blob/HEAD/media/medium_demo.gif" target="_blank" rel="noopener">데모 GIF</a>
+            </p>
+          </div>
+        </article>
+
+        <article class="card" data-cat="efficient vision">
+          <div class="cover efficient">
+            <span class="cover-cat">QUANTIZATION</span>
+            <span class="cover-label">W4A4 · QAT</span>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">2026.11 · 엣지컴퓨팅 개인 과제</div>
+            <h3>가지치기·4비트 양자화 평가</h3>
+            <p>ResNet-18(CIFAR-100)에서 비구조적 희소화와 채널 단위 구조적 가지치기를 비교해, 밀집 연산 환경(CPU 1-thread, batch 1)에서는 구조적 가지치기에서만 추론 지연이 약 49% 감소함을 확인했습니다. MobileNetV2 W4A4는 PTQ 61.54% → 15에폭 QAT 71.42%였습니다.</p>
+            <div class="tags"><span class="tag">Pruning</span><span class="tag">PTQ/QAT</span></div>
+            <p class="links-muted">비공개 과제</p>
+          </div>
+        </article>
+
+        <article class="card" data-cat="vision">
+          <div class="card-media contain">
+            <img src="assets/img/anomaly.jpg" alt="MVTec LOCO AD 이상 탐지 MLFP 히트맵 비교" width="1200" height="385">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">2026.05–06 · 인공지능보안 (7팀)</div>
+            <h3>MVTec LOCO AD 구조적·논리적 이상 탐지</h3>
+            <p>산업 이미지의 구조적·논리적 이상을 PatchCore·MLFP-KNN 계열로 비교하고 AU-sPRO로 진단했습니다.</p>
+            <div class="tags"><span class="tag">Anomaly Detection</span><span class="tag">PatchCore</span></div>
+            <p class="links">
+              <a href="https://github.com/mrpc2003/Anomaly-Detection-Public" target="_blank" rel="noopener">GitHub</a>
+            </p>
+          </div>
+        </article>
+
+        <article class="card" data-cat="data">
+          <div class="card-media contain">
+            <img src="assets/img/recsys.jpg" alt="KMU RecSys 26 Steam 데이터 연도별 상호작용 분포" width="1200" height="640">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">2026.06 · 추천시스템설계 Kaggle</div>
+            <h3>KMU RecSys 26 Steam 추천 파이프라인</h3>
+            <p>Steam 사용자–게임 평점 예측에서 SVD++·LightGCN을 모델링하고 검증 리포트와 재현성 감사를 정리했습니다.</p>
+            <div class="tags"><span class="tag">LightGCN</span><span class="tag">SVD++</span></div>
+            <p class="links">
+              <a href="https://github.com/mrpc2003/kmu-rec-sys-26-steam" target="_blank" rel="noopener">GitHub</a>
+            </p>
+          </div>
+        </article>
+
+        <article class="card" data-cat="vision">
+          <div class="card-media">
+            <img src="assets/img/nerf.jpg" alt="Nerfstudio nerfacto 렌더링 결과 프레임" width="540" height="338">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">2026.03–08 · MI Lab (2인)</div>
+            <h3>단일 음식 사진 3D 부피 복원 &amp; NeRF</h3>
+            <p>SAM 3.1·DepthPro 기반 파이프라인에 크기 의존 Smooth Scale 보정을 더해 Phase-I Private 0.37 MAPE를 기록했고, 선행 스터디로 nerfacto 30k 학습·렌더를 수행했습니다.</p>
+            <div class="tags"><span class="tag">3D Vision</span><span class="tag">Nerfstudio</span></div>
+            <p class="links">
+              <a href="https://github.com/mrpc2003/nerf-project-renders" target="_blank" rel="noopener">NeRF 렌더</a>
+            </p>
+          </div>
+        </article>
+
+        <article class="card" data-cat="vision">
+          <div class="cover vision">
+            <span class="cover-cat">CALIBRATION</span>
+            <span class="cover-label">ViT / Swin / ResNet</span>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">2026.07 · MI Lab 프로젝트 3</div>
+            <h3>ViT · Swin · ResNet-50 아키텍처·보정 재현</h3>
+            <p>Park &amp; Kim (ICLR 2022)을 부분 재현해 CIFAR-100 300에폭에서 ResNet-50 82.53% · Swin-Ti 76.45% · ViT-Ti 67.36%를 비교하고, ECE와 NLL·Brier 사이의 지표 순위 차이를 관찰했습니다.</p>
+            <div class="tags"><span class="tag">ViT</span><span class="tag">Calibration</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-cat="llm">
+          <div class="cover llm">
+            <span class="cover-cat">DISTRIBUTED LLM</span>
+            <span class="cover-label">GPT-2 124M · DDP</span>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">2026 · MI Lab LLM 스터디</div>
+            <h3>GPT-2 124M 구현 및 DDP 분산 학습</h3>
+            <p>GPT-2 124M을 바닥부터 구현해 Hugging Face 가중치 이식 일치를 검증하고 TF32·BF16·FlashAttention·DDP 설정을 정리했습니다.</p>
+            <div class="tags"><span class="tag">GPT-2</span><span class="tag">DDP</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-cat="llm efficient">
+          <div class="cover llm">
+            <span class="cover-cat">PEFT · LORA</span>
+            <span class="cover-label">LoRA r=4/8/16</span>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">2026.05 · 자연어처리 · MI Lab 프로젝트 2</div>
+            <h3>DistilBERT LoRA 랭크 스캔 vs 전체 미세조정</h3>
+            <p>SST-2에서 LoRA 랭크(r=4/8/16)별 메모리·성능을 전체 미세조정과 비교하고 LLaMA 3.1 LoRA 파인튜닝을 실험했습니다.</p>
+            <div class="tags"><span class="tag">LoRA</span><span class="tag">PEFT</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-cat="llm">
+          <div class="cover llm">
+            <span class="cover-cat">PROMPT OPT</span>
+            <span class="cover-label">DSPy · GEPA</span>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">2026.07 · MI Lab</div>
+            <h3>Hermes Agent 구조 분석 &amp; DSPy·GEPA 스킬 최적화</h3>
+            <p>Hermes Agent 아키텍처를 정리하고, 실패 로그를 바탕으로 DSPy·GEPA로 SKILL.md 프롬프트를 진화시키는 실험을 했습니다.</p>
+            <div class="tags"><span class="tag">Agents</span><span class="tag">DSPy</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-cat="efficient">
+          <div class="cover efficient">
+            <span class="cover-cat">GPU INFRA</span>
+            <span class="cover-label">Docker · CUDA</span>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">2026 · MI Lab 프로젝트 1 (2인)</div>
+            <h3>GPU 서버 연구 재현성 환경 구축</h3>
+            <p>Ubuntu 22.04 베어메탈에 NVIDIA 드라이버·Docker·NVIDIA Container Toolkit을 구성하고 PyTorch CUDA 컨테이너 재현 키트를 만들었습니다(Titan Xp).</p>
+            <div class="tags"><span class="tag">Docker</span><span class="tag">CUDA</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-cat="robotics">
+          <div class="cover robotics">
+            <span class="cover-cat">ROS 2 NAV</span>
+            <span class="cover-label">ROS 2 · A*</span>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">2026.10–11 · 운영체제의실제</div>
+            <h3>TurtleBot4 자율탐사 · ArUco · C-space A*</h3>
+            <p>ROS 2와 Occupancy Grid 기반으로 목표를 탐색하고, ArUco 위치 추정과 C-space A* 경로계획을 구현했습니다.</p>
+            <div class="tags"><span class="tag">ROS 2</span><span class="tag">Nav</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-cat="iot">
+          <div class="cover iot">
+            <span class="cover-cat">SMART HOME AIoT</span>
+            <span class="cover-label">AIoT Voice Hub</span>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">2025.08–11 · 팀 코스메테우스 (5인)</div>
+            <h3>CareDian — 고령자 스마트홈 AIoT 음성 허브</h3>
+            <p>Home Assistant·LG ThinQ API·ESP32 센서·로컬 음성 파이프라인을 통합했습니다. 제23회 임베디드 소프트웨어 경진대회 본선에 진출했고 교내 알파프로젝트에 선정되었습니다.</p>
+            <div class="tags"><span class="tag">Home Assistant</span><span class="tag">ESP32</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-cat="design">
+          <div class="card-media">
+            <img src="assets/img/nomaddesk.jpg" alt="NomadDesk Pro 모듈형 워크스테이션 설계 렌더링" width="1200" height="628">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">2025.06 · 국민대 조형대학 주최</div>
+            <h3>NomadDesk Pro — Fusion360 Design Contest 동상</h3>
+            <p>디지털 노마드를 위한 이동식 3패널 접이식 워크스테이션을 Fusion360으로 설계하고 A1 패널을 제작해 개인 출품했습니다.</p>
+            <div class="tags"><span class="tag">Fusion360</span><span class="tag">Product Design</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-cat="sw">
+          <div class="card-media">
+            <img src="assets/img/snake.jpg" alt="C++11 ncurses Snake Game 실행 화면" width="1200" height="832">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">2025.06 · C++ 프로그래밍 팀 과제</div>
+            <h3>C++11 ncurses Snake Game</h3>
+            <p>스테이지·미션·게이트·아이템을 갖춘 터미널 Snake 게임을 C++11과 ncurses로 구현했습니다.</p>
+            <div class="tags"><span class="tag">C++11</span><span class="tag">ncurses</span></div>
+            <p class="links">
+              <a href="https://github.com/mrpc2003/SnakeGame_Team10" target="_blank" rel="noopener">GitHub</a>
+            </p>
+          </div>
+        </article>
+
+        <article class="card" data-cat="iot">
+          <div class="cover iot">
+            <span class="cover-cat">IOT SYSTEM</span>
+            <span class="cover-label">ESP8266 · MQTT</span>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">2022 · KOSS IoT 부트캠프</div>
+            <h3>침입 감지 IoT &amp; MQTT 실내 환경 모니터</h3>
+            <p>ESP8266·Raspberry Pi·MQTT·Node.js·PyQt5로 출입 감지 시스템과 실내 환경 모니터를 구현했습니다.</p>
+            <div class="tags"><span class="tag">MQTT</span><span class="tag">ESP8266</span></div>
+            <p class="links">
+              <a href="https://github.com/mrpc2003/iot-entrance-detection" target="_blank" rel="noopener">침입 감지</a>
+              <a href="https://github.com/mrpc2003/mqtt-indoor-environment-monitor" target="_blank" rel="noopener">실내 모니터</a>
+            </p>
+          </div>
+        </article>
+
+        <article class="card" data-cat="sw">
+          <div class="cover sw">
+            <span class="cover-cat">CORE SW</span>
+            <span class="cover-label">Java · Python</span>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">2022 · 1학년 전공 교과</div>
+            <h3>Java 콘솔 게임 &amp; 기초 SW 실습</h3>
+            <p>Yacht Dice·Blackjack·Bingo·Ghost Chase 콘솔 게임(‘오히려좋아’ 팀)과 역행렬 계산기·동치관계 판별기 등 기초 과제를 구현했습니다.</p>
+            <div class="tags"><span class="tag">Java</span><span class="tag">Python</span></div>
+            <p class="links">
+              <a href="https://github.com/mrpc2003/java-console-game-collection" target="_blank" rel="noopener">Java</a>
+              <a href="https://github.com/mrpc2003/Inverse-Matrix-Calculator" target="_blank" rel="noopener">역행렬</a>
+              <a href="https://github.com/mrpc2003/equivalence-relation-discriminator" target="_blank" rel="noopener">동치관계</a>
+              <a href="https://github.com/mrpc2003/arduino-coursework-archive" target="_blank" rel="noopener">Arduino</a>
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <p class="more">대회 참가·학회 참관·교과 탐구와 초·중·고 활동 전체는 <a href="archive.html">Archive</a>에 정리했습니다.</p>
+    </div>
+  </section>
+
+  <section id="awards" class="section" aria-labelledby="h-awards">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow"><span class="eyebrow-no">03</span>AWARDS &amp; HONORS</p>
+        <h2 id="h-awards">수상</h2>
+      </div>
+
+      <ul class="awards">
+        <li>
+          <span class="award-date">2026.11</span>
+          <div class="award-body">
+            <div class="award-title-row">
+              <span class="award-badge">동상</span>
+              <strong>제21회 국제로봇콘테스트(IRC) 마트 환경 기반 휴머노이드 로봇 경진대회</strong>
+            </div>
+            <span class="award-meta">팀 국민대학교 로봇국 · 예선 1위·본선 4위 · 산업통상부·대구광역시 주최, 한국로봇산업진흥원 주관</span>
+            <p class="links">
+              <a href="https://cshumanoid.online/leaderboard" target="_blank" rel="noopener">예선 리더보드</a>
+              <a href="https://docs.google.com/spreadsheets/d/1zB2DuV-IadL6fQt2DqYGsGaSH-Lah5ChjYHWAKBEfpI/edit" target="_blank" rel="noopener">본선 점수표</a>
+            </p>
+          </div>
+        </li>
+        <li>
+          <span class="award-date">2025.11</span>
+          <div class="award-body">
+            <div class="award-title-row">
+              <span class="award-badge">본선 진출</span>
+              <strong>제23회 임베디드 소프트웨어 경진대회 (CareDian)</strong>
+            </div>
+            <span class="award-meta">팀 코스메테우스 · 산업통상자원부 주최, KESSIA 주관 · 국민대학교 알파프로젝트 선정</span>
+          </div>
+        </li>
+        <li>
+          <span class="award-date">2025.06</span>
+          <div class="award-body">
+            <div class="award-title-row">
+              <span class="award-badge">동상</span>
+              <strong>Autodesk Fusion360 Design Contest (NomadDesk Pro)</strong>
+            </div>
+            <span class="award-meta">국민대학교 조형대학 · 개인 출품</span>
+          </div>
+        </li>
+        <li>
+          <span class="award-date">2019–2021</span>
+          <div class="award-body">
+            <div class="award-title-row">
+              <span class="award-badge">교내 5건</span>
+              <strong>고교 교내 수상</strong>
+            </div>
+            <span class="award-meta">SW 프로젝트대회 최우수상(1위) · 수학과제연구대회 우수상(2위) · 과학과제연구·물리탐구실험·융합과학챌린지 장려상 — <a href="archive.html#high">Archive</a></span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="experience" class="section alt" aria-labelledby="h-exp">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow"><span class="eyebrow-no">04</span>EXPERIENCE &amp; EDUCATION</p>
+        <h2 id="h-exp">경력 · 학력</h2>
+      </div>
+
+      <div class="exp-list">
+        <div class="exp-row">
+          <div>
+            <div class="exp-period">2025.12 – 현재</div>
+            <div class="exp-org">국민대학교 인공지능학부</div>
+          </div>
+          <div class="exp-body">
+            <h3>학부연구생 · <a href="http://mi.kookmin.ac.kr/" target="_blank" rel="noopener">Machine Intelligence Lab</a></h3>
+            <div class="exp-sub">지도교수 이재구</div>
+            <p>멀티모달(VLM) 추론 개입 재현과 로봇 조작 정책 학습·실기 평가를 연구하며, 멀티 GPU Linux 서버를 구축·운용합니다. Stanford CS231n·CS224R 강의를 함께 공부했습니다.</p>
+          </div>
+        </div>
+
+        <div class="exp-row">
+          <div>
+            <div class="exp-period">2026.03 – 현재</div>
+            <div class="exp-org">국민대 SW중심대학사업단</div>
+          </div>
+          <div class="exp-body">
+            <h3>학부 수업 실습 지원 헬퍼 (근로장학생)</h3>
+            <p>1학기 AI 기초프로그래밍 · 2학기 AI기초원리 실습 지원</p>
+          </div>
+        </div>
+
+        <div class="exp-row">
+          <div>
+            <div class="exp-period">2023.05 – 2025.02</div>
+            <div class="exp-org">제10전투비행단</div>
+          </div>
+          <div class="exp-body">
+            <h3>대한민국 공군 병장 만기 전역</h3>
+            <p>항공교통 운영 보조(CQ): 비행 스케줄·활주로 협조, 기상·NOTAM 전달, 이착륙 기록</p>
+          </div>
+        </div>
+
+        <div class="exp-row">
+          <div>
+            <div class="exp-period">2022</div>
+            <div class="exp-org">(주)글로랑</div>
+          </div>
+          <div class="exp-body">
+            <h3>꾸그(Gguge) 온라인 강사</h3>
+            <p>초등 E-센서보드 로봇 6차시 커리큘럼·교안 직접 제작 및 실시간 수업</p>
+          </div>
+        </div>
+
+        <div class="exp-row">
+          <div>
+            <div class="exp-period">2022.03 – 2028.02</div>
+            <div class="exp-org">소프트웨어융합대학</div>
+          </div>
+          <div class="exp-body">
+            <h3>국민대학교 인공지능학부 인공지능전공 학사 (졸업 예정)</h3>
+            <p>전체 평점 4.16 / 4.5</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certs" class="section" aria-labelledby="h-certs">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow"><span class="eyebrow-no">05</span>CERTIFICATIONS &amp; TRAINING</p>
+        <h2 id="h-certs">자격 · 수료</h2>
+      </div>
+
+      <div class="cert-grid">
+        <article class="cert-card">
+          <div class="cert-issuer">Google · Coursera</div>
+          <h3 class="cert-title">Google AI 전문 인증서</h3>
+          <div class="cert-date">2026.05–10 (개별 8개 과정)</div>
+          <p class="links">
+            <a href="https://www.coursera.org/account/accomplishments/specialization/FM7E3VYGLBRC" target="_blank" rel="noopener">인증서(2026.05)</a>
+            <a href="https://www.coursera.org/account/accomplishments/specialization/XJR65NGQMOYS" target="_blank" rel="noopener">인증서(2026.10)</a>
+            <a href="https://www.credly.com/badges/77a2d1b3-a1f5-413c-aaf5-0f42bc33bb51" target="_blank" rel="noopener">Credly</a>
+          </p>
+        </article>
+
+        <article class="cert-card">
+          <div class="cert-issuer">Microsoft</div>
+          <h3 class="cert-title">Microsoft Certified: Azure AI Fundamentals</h3>
+          <div class="cert-date">2025.11</div>
+          <p class="links">
+            <a href="https://www.credly.com/badges/09c16ff6-00f3-424b-8f2e-f779e5284c1d" target="_blank" rel="noopener">Credly</a>
+          </p>
+        </article>
+
+        <article class="cert-card">
+          <div class="cert-issuer">AWS</div>
+          <h3 class="cert-title">AWS Training &amp; Certification 6개 과정</h3>
+          <div class="cert-date">2025.07</div>
+        </article>
+
+        <article class="cert-card">
+          <div class="cert-issuer">프로그래머스</div>
+          <h3 class="cert-title">PCCE Python3 Lv.2</h3>
+          <div class="cert-date">2025.05</div>
+        </article>
+
+        <article class="cert-card">
+          <div class="cert-issuer">KPC 한국생산성본부</div>
+          <h3 class="cert-title">ITQ 정보기술자격 A등급</h3>
+          <div class="cert-date">2024.12</div>
+        </article>
+
+        <article class="cert-card">
+          <div class="cert-issuer">일본국제교육지원협회</div>
+          <h3 class="cert-title">JLPT N2</h3>
+          <div class="cert-date">2024.08</div>
+        </article>
+
+        <article class="cert-card">
+          <div class="cert-issuer">대한상공회의소</div>
+          <h3 class="cert-title">컴퓨터활용능력 1급</h3>
+          <div class="cert-date">2023.04</div>
+        </article>
+
+        <article class="cert-card">
+          <div class="cert-issuer">한국교통안전공단</div>
+          <h3 class="cert-title">항공교통안전관리자</h3>
+          <div class="cert-date">2023.04</div>
+        </article>
+
+        <article class="cert-card">
+          <div class="cert-issuer">LG AI연구원</div>
+          <h3 class="cert-title">LG Aimers 2기 Data Intelligence 수료</h3>
+          <div class="cert-date">2023.04</div>
+        </article>
+
+        <article class="cert-card">
+          <div class="cert-issuer">NVIDIA</div>
+          <h3 class="cert-title">NVIDIA DLI ‘CUDA C/C++ 가속화 컴퓨팅 기초’</h3>
+          <div class="cert-date">2022.10</div>
+          <p class="links">
+            <a href="https://courses.nvidia.com/certificates/147adcdab35d471db883b9bdec31ad83/" target="_blank" rel="noopener">수료증</a>
+          </p>
+        </article>
+
+        <article class="cert-card">
+          <div class="cert-issuer">한국로봇자격검정사업단</div>
+          <h3 class="cert-title">로봇마스터 2급</h3>
+          <div class="cert-date">2014.12</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="section alt" aria-labelledby="h-skills">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow"><span class="eyebrow-no">06</span>SKILLS &amp; LANGUAGES</p>
+        <h2 id="h-skills">기술 · 언어</h2>
+      </div>
+
+      <dl class="skills">
+        <div class="skill-item">
+          <dt>구현</dt>
+          <dd>
+            <span class="skill-chip">Python</span>
+            <span class="skill-chip">PyTorch</span>
+          </dd>
+        </div>
+        <div class="skill-item">
+          <dt>학습·서빙</dt>
+          <dd>
+            <span class="skill-chip">PyTorch DDP</span>
+            <span class="skill-chip">vLLM</span>
+            <span class="skill-chip">멀티 GPU Linux 서버 운용</span>
+            <span class="skill-chip">Docker</span>
+            <span class="skill-chip">Git</span>
+          </dd>
+        </div>
+        <div class="skill-item">
+          <dt>VLA</dt>
+          <dd>
+            <span class="skill-chip">openpi (π0 · π0.5)</span>
+            <span class="skill-chip">SmolVLA</span>
+            <span class="skill-chip">LeRobot</span>
+          </dd>
+        </div>
+        <div class="skill-item">
+          <dt>로보틱스</dt>
+          <dd>
+            <span class="skill-chip">ROS 2 / Nav2</span>
+            <span class="skill-chip">ManiSkill 3</span>
+            <span class="skill-chip">NVIDIA Isaac Sim</span>
+          </dd>
+        </div>
+        <div class="skill-item">
+          <dt>언어</dt>
+          <dd>
+            <span class="skill-chip">일본어 JLPT N2</span>
+            <span class="skill-chip">영어 중급(업무상 의사소통)</span>
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="cv" class="section" aria-labelledby="h-cv">
+    <div class="container">
+      <div class="contact-cta">
+        <div>
+          <h2 id="h-cv">Contact</h2>
+          <p>연구 협업·문의는 이메일로 연락 주세요.</p>
+        </div>
+        <div class="cta">
+          <a class="btn primary" href="cv.pdf">CV (PDF)</a>
+          <a class="btn" href="mailto:mrpc2003@kookmin.ac.kr">Email</a>
+          <a class="btn" href="https://github.com/mrpc2003" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/woohyun-kim-118433126/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="archive.html">Archive</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
+
+<footer class="footer">
+  <div class="container">© 2026 WOOHYUN KIM · UPDATED 2026.11</div>
+</footer>
 
 </body>
 </html>
